@@ -5,945 +5,952 @@
 {% load bootstrap4 %}
 
 {% block title %}
-    Расписание
+Расписание
 {% endblock %}
 
 {% block content %}
+<section class="schedule">
     {% if ais %}
-        <p>Расписание группы {{ sh.group.name }}</p>
-        {% if sbs_monday %}
-            <table border="2" cellspacing="3" align="center">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Понедельник</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% if first_lesson|length == 2 %}
-                        <th rowspan="3">08:30</th>
-                        {% for sb in first_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif first_lesson|length == 1 %}
-                        <th rowspan="2">08:30</th>
-                        {% for sb in first_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if second_lesson|length == 2 %}
-                        <th rowspan="3">10:25</th>
-                        {% for sb in second_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif second_lesson|length == 1 %}
-                        <th rowspan="2">10:25</th>
-                        {% for sb in second_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if third_lesson|length == 2 %}
-                        <th rowspan="3">12:35</th>
-                        {% for sb in third_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif third_lesson|length == 1 %}
-                        <th rowspan="2">12:35</th>
-                        {% for sb in third_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fourth_lesson|length == 2 %}
-                        <th rowspan="3">14:30</th>
-                        {% for sb in fourth_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fourth_lesson|length == 1 %}
-                        <th rowspan="2">14:30</th>
-                        {% for sb in fourth_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fifth_lesson|length == 2 %}
-                        <th rowspan="3">16:25</th>
-                        {% for sb in fifth_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fifth_lesson|length == 1 %}
-                        <th rowspan="2">16:25</th>
-                        {% for sb in fifth_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if sixth_lesson|length == 2 %}
-                        <th rowspan="3">18:10</th>
-                        {% for sb in sixth_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif sixth_lesson|length == 1 %}
-                        <th rowspan="2">18:10</th>
-                        {% for sb in sixth_lesson %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            В понедельник пар нет
+    <div class="schedule__header">
+        <p class="schedule__name">Расписание группы {{ sh.group.name }}</p>
+    </div>
+    {% if sbs_monday %}
+    <table border="2" cellspacing="3" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Понедельник</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% if first_lesson|length == 2 %}
+            <th rowspan="3">08:30</th>
+            {% for sb in first_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif first_lesson|length == 1 %}
+        <th rowspan="2">08:30</th>
+        {% for sb in first_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
         {% endif %}
-        <p></p>
-        <br>
-        {#TUESDAY----TUESDAY----TUESDAY#}
-        {% if sbs_tuesday %}
-            <table border="2" cellspacing="3" align="center">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Вторник</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% if first_lessonTU|length == 2 %}
-                        <th rowspan="3">08:30</th>
-                        {% for sb in first_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif first_lessonTU|length == 1 %}
-                        <th rowspan="2">08:30</th>
-                        {% for sb in first_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if second_lessonTU|length == 2 %}
-                        <th rowspan="3">10:25</th>
-                        {% for sb in second_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif second_lessonTU|length == 1 %}
-                        <th rowspan="2">10:25</th>
-                        {% for sb in second_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if third_lessonTU|length == 2 %}
-                        <th rowspan="3">12:35</th>
-                        {% for sb in third_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif third_lessonTU|length == 1 %}
-                        <th rowspan="2">12:35</th>
-                        {% for sb in third_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fourth_lessonTU|length == 2 %}
-                        <th rowspan="3">14:30</th>
-                        {% for sb in fourth_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fourth_lessonTU|length == 1 %}
-                        <th rowspan="2">14:30</th>
-                        {% for sb in fourth_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fifth_lessonTU|length == 2 %}
-                        <th rowspan="3">16:25</th>
-                        {% for sb in fifth_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fifth_lessonTU|length == 1 %}
-                        <th rowspan="2">16:25</th>
-                        {% for sb in fifth_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if sixth_lessonTU|length == 2 %}
-                        <th rowspan="3">18:10</th>
-                        {% for sb in sixth_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif sixth_lessonTU|length == 1 %}
-                        <th rowspan="2">18:10</th>
-                        {% for sb in sixth_lessonTU %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            Во вторник пар нет
+        </tr>
+        <tr>
+            {% if second_lesson|length == 2 %}
+            <th rowspan="3">10:25</th>
+            {% for sb in second_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif second_lesson|length == 1 %}
+        <th rowspan="2">10:25</th>
+        {% for sb in second_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
         {% endif %}
-        <p></p>
-        <br>
-        {#WEDNESDAY----WEDNESDAY----WEDNESDAY#}
-        {% if sbs_wednesday %}
-            <table border="2" cellspacing="3" align="center">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Среда</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% if first_lessonW|length == 2 %}
-                        <th rowspan="3">08:30</th>
-                        {% for sb in first_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif first_lessonW|length == 1 %}
-                        <th rowspan="2">08:30</th>
-                        {% for sb in first_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if second_lessonW|length == 2 %}
-                        <th rowspan="3">10:25</th>
-                        {% for sb in second_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif second_lessonW|length == 1 %}
-                        <th rowspan="2">10:25</th>
-                        {% for sb in second_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if third_lessonW|length == 2 %}
-                        <th rowspan="3">12:35</th>
-                        {% for sb in third_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif third_lessonW|length == 1 %}
-                        <th rowspan="2">12:35</th>
-                        {% for sb in third_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fourth_lessonW|length == 2 %}
-                        <th rowspan="3">14:30</th>
-                        {% for sb in fourth_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fourth_lessonW|length == 1 %}
-                        <th rowspan="2">14:30</th>
-                        {% for sb in fourth_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fifth_lessonW|length == 2 %}
-                        <th rowspan="3">16:25</th>
-                        {% for sb in fifth_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fifth_lessonW|length == 1 %}
-                        <th rowspan="2">16:25</th>
-                        {% for sb in fifth_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if sixth_lessonW|length == 2 %}
-                        <th rowspan="3">18:10</th>
-                        {% for sb in sixth_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif sixth_lessonW|length == 1 %}
-                        <th rowspan="2">18:10</th>
-                        {% for sb in sixth_lessonW %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            В среду пар нет
+        </tr>
+        <tr>
+            {% if third_lesson|length == 2 %}
+            <th rowspan="3">12:35</th>
+            {% for sb in third_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif third_lesson|length == 1 %}
+        <th rowspan="2">12:35</th>
+        {% for sb in third_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
         {% endif %}
-        <p></p>
-        <br>
-        {#        THURSDAY-----THURSDAY----THURSDAY#}
-        {% if sbs_thursday %}
-            <table border="2" cellspacing="3" align="center">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Четверг</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% if first_lessonTH|length == 2 %}
-                        <th rowspan="3">08:30</th>
-                        {% for sb in first_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif first_lessonTH|length == 1 %}
-                        <th rowspan="2">08:30</th>
-                        {% for sb in first_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if second_lessonTH|length == 2 %}
-                        <th rowspan="3">10:25</th>
-                        {% for sb in second_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif second_lessonTH|length == 1 %}
-                        <th rowspan="2">10:25</th>
-                        {% for sb in second_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if third_lessonTH|length == 2 %}
-                        <th rowspan="3">12:35</th>
-                        {% for sb in third_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif third_lessonTH|length == 1 %}
-                        <th rowspan="2">12:35</th>
-                        {% for sb in third_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fourth_lessonTH|length == 2 %}
-                        <th rowspan="3">14:30</th>
-                        {% for sb in fourth_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fourth_lessonTH|length == 1 %}
-                        <th rowspan="2">14:30</th>
-                        {% for sb in fourth_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fifth_lessonTH|length == 2 %}
-                        <th rowspan="3">16:25</th>
-                        {% for sb in fifth_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fifth_lessonTH|length == 1 %}
-                        <th rowspan="2">16:25</th>
-                        {% for sb in fifth_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if sixth_lessonTH|length == 2 %}
-                        <th rowspan="3">18:10</th>
-                        {% for sb in sixth_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif sixth_lessonTH|length == 1 %}
-                        <th rowspan="2">18:10</th>
-                        {% for sb in sixth_lessonTH %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            В четверг пар нет
+        </tr>
+        <tr>
+            {% if fourth_lesson|length == 2 %}
+            <th rowspan="3">14:30</th>
+            {% for sb in fourth_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fourth_lesson|length == 1 %}
+        <th rowspan="2">14:30</th>
+        {% for sb in fourth_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
         {% endif %}
-        <p></p>
-        <br>
-        {#        FRIDAY --- FRIDAY  ---______________________________________________FRIDAY#}
-        {% if sbs_friday %}
-            <table border="2" cellspacing="3" align="center">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Пятница</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% if first_lessonF|length == 2 %}
-                        <th rowspan="3">08:30</th>
-                        {% for sb in first_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif first_lessonF|length == 1 %}
-                        <th rowspan="2">08:30</th>
-                        {% for sb in first_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if second_lessonF|length == 2 %}
-                        <th rowspan="3">10:25</th>
-                        {% for sb in second_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif second_lessonF|length == 1 %}
-                        <th rowspan="2">10:25</th>
-                        {% for sb in second_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if third_lessonF|length == 2 %}
-                        <th rowspan="3">12:35</th>
-                        {% for sb in third_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif third_lessonF|length == 1 %}
-                        <th rowspan="2">12:35</th>
-                        {% for sb in third_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fourth_lessonF|length == 2 %}
-                        <th rowspan="3">14:30</th>
-                        {% for sb in fourth_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fourth_lessonF|length == 1 %}
-                        <th rowspan="2">14:30</th>
-                        {% for sb in fourth_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fifth_lessonF|length == 2 %}
-                        <th rowspan="3">16:25</th>
-                        {% for sb in fifth_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fifth_lessonF|length == 1 %}
-                        <th rowspan="2">16:25</th>
-                        {% for sb in fifth_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if sixth_lessonF|length == 2 %}
-                        <th rowspan="3">18:10</th>
-                        {% for sb in sixth_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif sixth_lessonF|length == 1 %}
-                        <th rowspan="2">18:10</th>
-                        {% for sb in sixth_lessonF %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            В пятницу пар нет
+        </tr>
+        <tr>
+            {% if fifth_lesson|length == 2 %}
+            <th rowspan="3">16:25</th>
+            {% for sb in fifth_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fifth_lesson|length == 1 %}
+        <th rowspan="2">16:25</th>
+        {% for sb in fifth_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
         {% endif %}
-        <p></p>
-        <br>
-        {% if sbs_saturday %}
-            <table border="2" cellspacing="3" align="center">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Суббота</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    {% if first_lessonS|length == 2 %}
-                        <th rowspan="3">08:30</th>
-                        {% for sb in first_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif first_lessonS|length == 1 %}
-                        <th rowspan="2">08:30</th>
-                        {% for sb in first_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if second_lessonS|length == 2 %}
-                        <th rowspan="3">10:25</th>
-                        {% for sb in second_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif second_lessonS|length == 1 %}
-                        <th rowspan="2">10:25</th>
-                        {% for sb in second_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if third_lessonS|length == 2 %}
-                        <th rowspan="3">12:35</th>
-                        {% for sb in third_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif third_lessonS|length == 1 %}
-                        <th rowspan="2">12:35</th>
-                        {% for sb in third_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fourth_lessonS|length == 2 %}
-                        <th rowspan="3">14:30</th>
-                        {% for sb in fourth_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fourth_lessonS|length == 1 %}
-                        <th rowspan="2">14:30</th>
-                        {% for sb in fourth_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if fifth_lessonS|length == 2 %}
-                        <th rowspan="3">16:25</th>
-                        {% for sb in fifth_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif fifth_lessonS|length == 1 %}
-                        <th rowspan="2">16:25</th>
-                        {% for sb in fifth_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if sixth_lessonS|length == 2 %}
-                        <th rowspan="3">18:10</th>
-                        {% for sb in sixth_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% elif sixth_lessonS|length == 1 %}
-                        <th rowspan="2">18:10</th>
-                        {% for sb in sixth_lessonS %}
-                            <tr>
-                                <th>{{ sb.1 }}
-                                    <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
-                                </th>
-                                <th>{{ sb.5 }} {{ sb.6 }}</th>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
+        </tr>
+        <tr>
+            {% if sixth_lesson|length == 2 %}
+            <th rowspan="3">18:10</th>
+            {% for sb in sixth_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif sixth_lesson|length == 1 %}
+        <th rowspan="2">18:10</th>
+        {% for sb in sixth_lesson %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
         {% endif %}
+        </tr>
+        </tbody>
+    </table>
     {% else %}
-        <h3>На данный момент для вашей группы не были распределены пары. Дождитесь распределения
-            от администратора сайта</h3>
+    <p> В понедельник пар нет</p>
     {% endif %}
-    <p><a href="{% url 'main:list_schedule' %}">Вернуться к списку расписаний</a></p>
+    <p></p>
+    <br>
+    {#TUESDAY----TUESDAY----TUESDAY#}
+    {% if sbs_tuesday %}
+    <table border="2" cellspacing="3" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Вторник</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% if first_lessonTU|length == 2 %}
+            <th rowspan="3">08:30</th>
+            {% for sb in first_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif first_lessonTU|length == 1 %}
+        <th rowspan="2">08:30</th>
+        {% for sb in first_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if second_lessonTU|length == 2 %}
+            <th rowspan="3">10:25</th>
+            {% for sb in second_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif second_lessonTU|length == 1 %}
+        <th rowspan="2">10:25</th>
+        {% for sb in second_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if third_lessonTU|length == 2 %}
+            <th rowspan="3">12:35</th>
+            {% for sb in third_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif third_lessonTU|length == 1 %}
+        <th rowspan="2">12:35</th>
+        {% for sb in third_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fourth_lessonTU|length == 2 %}
+            <th rowspan="3">14:30</th>
+            {% for sb in fourth_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fourth_lessonTU|length == 1 %}
+        <th rowspan="2">14:30</th>
+        {% for sb in fourth_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fifth_lessonTU|length == 2 %}
+            <th rowspan="3">16:25</th>
+            {% for sb in fifth_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fifth_lessonTU|length == 1 %}
+        <th rowspan="2">16:25</th>
+        {% for sb in fifth_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if sixth_lessonTU|length == 2 %}
+            <th rowspan="3">18:10</th>
+            {% for sb in sixth_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif sixth_lessonTU|length == 1 %}
+        <th rowspan="2">18:10</th>
+        {% for sb in sixth_lessonTU %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p>Во вторник пар нет</p>
+    {% endif %}
+    <p></p>
+    <br>
+    {#WEDNESDAY----WEDNESDAY----WEDNESDAY#}
+    {% if sbs_wednesday %}
+    <table border="2" cellspacing="3" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Среда</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% if first_lessonW|length == 2 %}
+            <th rowspan="3">08:30</th>
+            {% for sb in first_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif first_lessonW|length == 1 %}
+        <th rowspan="2">08:30</th>
+        {% for sb in first_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if second_lessonW|length == 2 %}
+            <th rowspan="3">10:25</th>
+            {% for sb in second_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif second_lessonW|length == 1 %}
+        <th rowspan="2">10:25</th>
+        {% for sb in second_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if third_lessonW|length == 2 %}
+            <th rowspan="3">12:35</th>
+            {% for sb in third_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif third_lessonW|length == 1 %}
+        <th rowspan="2">12:35</th>
+        {% for sb in third_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fourth_lessonW|length == 2 %}
+            <th rowspan="3">14:30</th>
+            {% for sb in fourth_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fourth_lessonW|length == 1 %}
+        <th rowspan="2">14:30</th>
+        {% for sb in fourth_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fifth_lessonW|length == 2 %}
+            <th rowspan="3">16:25</th>
+            {% for sb in fifth_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fifth_lessonW|length == 1 %}
+        <th rowspan="2">16:25</th>
+        {% for sb in fifth_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if sixth_lessonW|length == 2 %}
+            <th rowspan="3">18:10</th>
+            {% for sb in sixth_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif sixth_lessonW|length == 1 %}
+        <th rowspan="2">18:10</th>
+        {% for sb in sixth_lessonW %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p>В среду пар нет</p>
+    {% endif %}
+    <p></p>
+    <br>
+    {# THURSDAY-----THURSDAY----THURSDAY#}
+    {% if sbs_thursday %}
+    <table border="2" cellspacing="3" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Четверг</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% if first_lessonTH|length == 2 %}
+            <th rowspan="3">08:30</th>
+            {% for sb in first_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif first_lessonTH|length == 1 %}
+        <th rowspan="2">08:30</th>
+        {% for sb in first_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if second_lessonTH|length == 2 %}
+            <th rowspan="3">10:25</th>
+            {% for sb in second_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif second_lessonTH|length == 1 %}
+        <th rowspan="2">10:25</th>
+        {% for sb in second_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if third_lessonTH|length == 2 %}
+            <th rowspan="3">12:35</th>
+            {% for sb in third_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif third_lessonTH|length == 1 %}
+        <th rowspan="2">12:35</th>
+        {% for sb in third_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fourth_lessonTH|length == 2 %}
+            <th rowspan="3">14:30</th>
+            {% for sb in fourth_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fourth_lessonTH|length == 1 %}
+        <th rowspan="2">14:30</th>
+        {% for sb in fourth_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fifth_lessonTH|length == 2 %}
+            <th rowspan="3">16:25</th>
+            {% for sb in fifth_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fifth_lessonTH|length == 1 %}
+        <th rowspan="2">16:25</th>
+        {% for sb in fifth_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if sixth_lessonTH|length == 2 %}
+            <th rowspan="3">18:10</th>
+            {% for sb in sixth_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif sixth_lessonTH|length == 1 %}
+        <th rowspan="2">18:10</th>
+        {% for sb in sixth_lessonTH %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p>В четверг пар нет</p>
+    {% endif %}
+    <p></p>
+    <br>
+    {# FRIDAY --- FRIDAY ---______________________________________________FRIDAY#}
+    {% if sbs_friday %}
+    <table border="2" cellspacing="3" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Пятница</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% if first_lessonF|length == 2 %}
+            <th rowspan="3">08:30</th>
+            {% for sb in first_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif first_lessonF|length == 1 %}
+        <th rowspan="2">08:30</th>
+        {% for sb in first_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if second_lessonF|length == 2 %}
+            <th rowspan="3">10:25</th>
+            {% for sb in second_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif second_lessonF|length == 1 %}
+        <th rowspan="2">10:25</th>
+        {% for sb in second_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if third_lessonF|length == 2 %}
+            <th rowspan="3">12:35</th>
+            {% for sb in third_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif third_lessonF|length == 1 %}
+        <th rowspan="2">12:35</th>
+        {% for sb in third_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fourth_lessonF|length == 2 %}
+            <th rowspan="3">14:30</th>
+            {% for sb in fourth_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fourth_lessonF|length == 1 %}
+        <th rowspan="2">14:30</th>
+        {% for sb in fourth_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fifth_lessonF|length == 2 %}
+            <th rowspan="3">16:25</th>
+            {% for sb in fifth_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fifth_lessonF|length == 1 %}
+        <th rowspan="2">16:25</th>
+        {% for sb in fifth_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if sixth_lessonF|length == 2 %}
+            <th rowspan="3">18:10</th>
+            {% for sb in sixth_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif sixth_lessonF|length == 1 %}
+        <th rowspan="2">18:10</th>
+        {% for sb in sixth_lessonF %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p>В пятницу пар нет</p>
+    {% endif %}
+    <p></p>
+    <br>
+    {% if sbs_saturday %}
+    <table border="2" cellspacing="3" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Суббота</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% if first_lessonS|length == 2 %}
+            <th rowspan="3">08:30</th>
+            {% for sb in first_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif first_lessonS|length == 1 %}
+        <th rowspan="2">08:30</th>
+        {% for sb in first_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if second_lessonS|length == 2 %}
+            <th rowspan="3">10:25</th>
+            {% for sb in second_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif second_lessonS|length == 1 %}
+        <th rowspan="2">10:25</th>
+        {% for sb in second_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if third_lessonS|length == 2 %}
+            <th rowspan="3">12:35</th>
+            {% for sb in third_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif third_lessonS|length == 1 %}
+        <th rowspan="2">12:35</th>
+        {% for sb in third_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fourth_lessonS|length == 2 %}
+            <th rowspan="3">14:30</th>
+            {% for sb in fourth_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fourth_lessonS|length == 1 %}
+        <th rowspan="2">14:30</th>
+        {% for sb in fourth_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if fifth_lessonS|length == 2 %}
+            <th rowspan="3">16:25</th>
+            {% for sb in fifth_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif fifth_lessonS|length == 1 %}
+        <th rowspan="2">16:25</th>
+        {% for sb in fifth_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        <tr>
+            {% if sixth_lessonS|length == 2 %}
+            <th rowspan="3">18:10</th>
+            {% for sb in sixth_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% elif sixth_lessonS|length == 1 %}
+        <th rowspan="2">18:10</th>
+        {% for sb in sixth_lessonS %}
+        <tr>
+            <th>{{ sb.1 }}
+                <p>{{ sb.2 }} {{ sb.3 }} {{ sb.4 }}</p>
+            </th>
+            <th>{{ sb.5 }} {{ sb.6 }}</th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    {% else %}
+    <h3>На данный момент для вашей группы не были распределены пары. Дождитесь распределения
+        от администратора сайта</h3>
+    {% endif %}
+    <p>
+        <a href="{% url 'main:list_schedule' %}">
+            <button class="to-schedule-list">К списку расписаний</button>
+        </a></p>
+</section>
 {% endblock %}

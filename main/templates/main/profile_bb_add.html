@@ -2,16 +2,18 @@
 
 {% load bootstrap4 %}
 {% block title %}
-    {{ bb.title }}Добавление объявления - Профиль пользователя
+{{ bb.title }}Добавление объявления - Профиль пользователя
 {% endblock %}
 
 {% block content %}
-    <h2>Добавление объявления</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        {% bootstrap_formset formset layout='horizontal' %}
-        {% buttons submit='Добавить' %}{% endbuttons %}
-    </form>
-    <p><a href="{% url 'main:profile' %}">Отмена</a></p>
+<h2>Добавление объявления</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% bootstrap_formset formset layout='horizontal' %}
+    {% buttons submit='Добавить' %}{% endbuttons %}
+</form>
+<p><a href="{% url 'main:profile' %}">
+    <button class="btn-cancel">Отмена</button>
+</a></p>
 {% endblock %}

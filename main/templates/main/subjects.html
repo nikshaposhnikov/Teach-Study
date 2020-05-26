@@ -5,53 +5,68 @@
 {% load bootstrap4 %}
 
 {% block title %}
-    Дисциплины пользователя
+Дисциплины пользователя
 {% endblock %}
 
 {% block content %}
-    {% if user.is_teacher %}
-        {% if user.first_name and user.last_name and user.teacher.middle_name %}
-            <p>Дисциплины пользователя {{ user.last_name }} {{ user.first_name }}
-                {{ user.teacher.middle_name }}</p>
-        {% else %}
-            <p>Дисциплины пользователя {{ user.get_full_name }}</p>
-        {% endif %}
-        {% if sbs_only %}
-            <h3>Ваши дисциплины</h3>
-            <ul class="list-unstyled">
-                {% for sb in sbs_only %}
-                    <li class="media my-5 p-3 border">
-                        {% url 'main:profile_sub_detail' pk=sb.1 as url %}
-                        <a href="{{ url }}"></a>
-                        <div class="media-body">
-                            <a href="{{ url }}">{{ sb.0 }}</a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            {% bootstrap_pagination page url=keyword %}
-        {% else %}
-            <h3>На данный момент у вас нет дисциплин, которые вы преподаёте. Дождитесь распределения
-                от администратора сайта</h3>
-        {% endif %}
+{% if user.is_teacher %}
+{% if user.first_name and user.last_name and user.teacher.middle_name %}
+<div class="about__container">
+    <p class="about__name">Дисциплины пользователя {{ user.last_name }} {{ user.first_name }}
+        {{ user.teacher.middle_name }}</p>
+</div>
+{% else %}
+<p class="about__name">Дисциплины пользователя {{ user.get_full_name }}</p>
+{% endif %}
+{% if sbs_only %}
+<section class="schedule-list">
+    <div class="schedule-list__header">
+        <p class="schedule-list__header-name">Дисциплины группы {{ user.group }} </p>
+    </div>
+    <div class="schedule-list__container">
+        {% for sb in sbs_only %}
+        <div class="schedule-list__item">
+            {% url 'main:profile_sub_detail' pk=sb.1 as url %}
+            <a href="{{ url }}"></a>
+            <div class="schedule-list__item-name">
+                <a href="{{ url }}" class="schedule-list__item-link">{{ sb.0 }}</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% bootstrap_pagination page url=keyword %}
+{% else %}
+<div class="about__container">
+    <p class="about__name"></p>
+    <div class="about__info">
+        <p>На данный момент у вас нет дисциплин, которые вы преподаёте. Дождитесь распределения
+            от администратора сайта</p>
+    </div>
+</div>
+{% endif %}
+{% else %}
+{% if sbs_only %}
+<section class="schedule-list">
+    <div class="schedule-list__header">
+        <p class="schedule-list__header-name">Дисциплины группы {{ user.group }} </p>
+    </div>
+    <div class="schedule-list__container">
+        {% for sb in sbs_only %}
+        <div class="schedule-list__item">
+            {% url 'main:student_sub_detail' pk=sb.1 as url %}
+            <!--            <a href="{{ url }}"></a>-->
+            <div class="schedule-list__item-name">
+                <a href="{{ url }}" class="schedule-list__item-link">{{ sb.0 }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% bootstrap_pagination page url=keyword %}
     {% else %}
-        {% if sbs_only %}
-            <p>Дисциплины группы {{ user.group }}</p>
-            <ul class="list-unstyled">
-                {% for sb in sbs_only %}
-                    <li class="media my-5  border">
-                        {% url 'main:student_sub_detail' pk=sb.1 as url %}
-                        <a href="{{ url }}"></a>
-                        <div class="media-body">
-                            <a href="{{ url }}">{{ sb.0 }}</a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            {% bootstrap_pagination page url=keyword %}
-        {% else %}
-            <h3>На данный момент для вашей группы не были распределены пары. Дождитесь распределения
-                от администратора сайта</h3>
-        {% endif %}
-    {% endif %}
+    <h3>На данный момент для вашей группы не были распределены пары. Дождитесь распределения
+        от администратора сайта</h3>
+</section>
+{% endif %}
+{% endif %}
 {% endblock %}

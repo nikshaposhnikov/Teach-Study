@@ -11,5 +11,7 @@
     {% csrf_token %}
     {% buttons submit='Удалить' %}{% endbuttons %}
 </form>
-    <p><a href="{% url 'main:detail' group_pk=comment.bb.group.pk pk=comment.bb.pk %}">Отмена</a></p>
+<p><a href="{% url 'main:detail' group_pk=comment.bb.group.pk pk=comment.bb.pk %}">
+    <button class="btn-cancel">Отмена</button>
+</a></p>
 {% endblock %}

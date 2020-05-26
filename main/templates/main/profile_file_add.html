@@ -12,5 +12,5 @@
         {% bootstrap_formset formset layout='horizontal' %}
         {% buttons submit='Сохранить' %}{% endbuttons %}
     </form>
-    <p><a href="{% url 'main:profile_sub_detail' sub.pk %}">Назад</a></p>
+    <p><a href="{% url 'main:profile_sub_detail' sub.pk %}"> <button class="btn-cancel">Назад</button></a></p>
 {% endblock %}

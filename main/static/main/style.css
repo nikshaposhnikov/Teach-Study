@@ -1,14 +1,525 @@
-header h1 {
-    background: url("ads.jpg") left / auto 100% no-repeat,
-    url("ads.jpg") right / auto 100% no-repeat;
-}
-.root {
-    font-size: larger;
+html, body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-img.main-image {
-    width: 300px;
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    background-color: #243b7f;
+    color: white;
 }
-img.additional-image {
-    width: 180px;
+
+.header {
+    display: flex;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+    border-right: 1px solid white;
+    width: 20%;
+    max-width: 17.5rem;
+}
+
+.logo__img {
+    width: 3.4375rem;
+    height: 3.4375rem;
+    border-radius: 50%;
+}
+
+.logo__name {
+    padding-top: 0.9375rem;
+    padding-left: 0.625rem;
+    font-weight: 500;
+    font-size: 1.1875rem;
+}
+
+.logo__link,
+.logo__link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.navigation {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 4.6875rem;
+}
+
+.navigation__item {
+    padding: 1rem;
+}
+
+.navigation__item-link {
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 500;
+}
+
+.navigation__item-link:hover {
+    color: wheat;
+    text-decoration: none;
+}
+
+.navigation__item-link.user-name {
+    text-transform: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.dropdown-menu.show {
+    left: -2rem !important;
+}
+
+.main {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    max-width: 17.5rem;
+    padding-top: 2rem;
+    border-right: 1px solid;
+}
+
+.sidebar_item {
+    display: flex;
+    width: 100%;
+    padding: 0.625rem 0.625rem 0.625rem 3.125rem;
+    font-size: 18px;
+}
+
+.sidebar_item-link {
+    color: white;
+}
+
+.sidebar_item-link:hover {
+    color: wheat;
+    text-decoration: none;
+}
+
+.main-info_container {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    flex: 1;
+}
+
+.ads-page {
+    background-color: white;
+    padding-left: 2rem;
+    flex: 1;
+}
+
+.ads__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.ads__item {
+    display: flex;
+    border-top: 1px solid gainsboro;
+    padding: 1.5rem 0 0.75rem 0;
+}
+
+.ads-item__img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 450px;
+    min-height: 350px;
+}
+
+.ads-item__img {
+    min-width: 250px;
+    min-height: 200px;
+    max-width: 90%;
+}
+
+.ads-item__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 1.5rem;
+    max-width: 50%;
+}
+
+.ads-item__info-name {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ads-item__author {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.ads-item__content-container {
+    flex-grow: 1;
+}
+
+.ads-item__button {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 8.75rem;
+    margin-bottom: 2rem;
+    padding: 6px 0;
+    color: white;
+}
+
+.ads-item__button:hover,
+.ads__search-form .btn-primary:hover,
+.btn-i-am-teacher:hover,
+.to-schedule-list:hover,
+.form-group .btn.btn-primary:hover,
+.return-btn:hover,
+.btn-add-ads:hover,
+.btn-delete-ads:hover,
+.btn-edit-ads:hover {
+    background-color: #168bd6;
+}
+
+.ads-item__button-link {
+    color: white;
+}
+
+.ads-item__button-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.ads__header-names {
+    flex-grow: 1;
+}
+
+.ads__header-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.ads__header-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.ads__search-form {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding-right: 1rem;
+}
+
+.ads__search-form .btn-primary {
+    background-color: #169bd6;
+}
+
+.ads__header-link {
+    color: black;
+    text-transform: lowercase;
+    text-decoration: underline;
+}
+
+.hello_user {
+    padding-top: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #243b7f;
+    flex: 1;
+}
+
+.schedule-list__item {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.625rem 20px;
+    margin-bottom: 1rem;
+}
+
+.schedule-list__item-link {
+    color: black;
+}
+
+.schedule-list__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.schedule-list__header-name {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.schedule-list__container {
+    padding-top: 2rem;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    background-color: white;
+}
+
+.schedule th {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.schedule__name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.schedule__header {
+    padding: 2rem 0;
+}
+
+.to-schedule-list {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 15rem;
+    margin-bottom: 2rem;
+    padding: 6px 0;
+    color: white;
+}
+
+.about__container,
+.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    position: relative;
+}
+
+.about__name,
+.registration__name {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.about__info {
+    font-size: 18px;
+    padding: 2rem;
+    color: white;
+}
+
+.registration__form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    color: white;
+}
+
+.btn-i-am-teacher,
+.form-group .btn.btn-primary,
+.btn-forgot-password {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 14rem;
+    margin-bottom: 2rem;
+    padding: 6px 0;
+    color: white;
+}
+
+.form-text.text-muted {
+    display: none;
+}
+
+.form-group .btn.btn-primary {
+    margin: 1rem 0 0 0;
+}
+
+.form-group {
+    display: flex;
+}
+
+.registration__form.registration__form-teacher {
+    padding-top: 1rem;
+}
+
+.registration__buttons {
+    padding-top: 1rem;
+}
+
+.return-btn {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 8rem;
+    color: white;
+}
+
+.btn-add-ads {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 14rem;
+    color: white;
+    margin: 0.5rem 0;
+}
+
+.btn-cancel {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 8rem;
+    color: white;
+    padding: 6px 0;
+}
+
+.registration__form-forgot-password {
+    align-self: flex-end;
+}
+
+.registration__form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration__btn-container {
+    align-self: flex-end;
+}
+
+.teacher-name {
+    color: white;
+    font-size: 18px;
+}
+
+.studying-files__name {
+    color: white;
+    font-size: 16px;
+    padding-top: 1rem;
+}
+
+.studying-files__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.studying-files__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.studying-files__item-img {
+    width: 100px;
+}
+
+.studying-files__item-link,
+.studying-files__item-size {
+    color: white;
+}
+
+.studying-files__item-link:hover {
+    color: #169bd6;
+}
+
+.studying-files__item-link-container {
+    padding: 10px 0;
+}
+
+.white-bg {
+    background-color: white;
+}
+
+.ads-detail .ads-item__content-container {
+    flex-grow: 1;
+    word-wrap: break-word;
+    max-width: 80%;
+}
+
+.btn-delete-ads,
+.btn-edit-ads {
+    background-color: #169bd6;
+    border-color: #169bd6;
+    border-radius: 5px;
+    width: 12rem;
+    margin-bottom: 2rem;
+    color: white;
+    padding: 3px 0;
+}
+
+.header-names_teacher-info {
+    padding-top: 1rem;
+}
+.btn-cancel.edit-teacher-info{
+    position: absolute;
+    bottom: 30px;
+    right: 30%;
+}
+.gallery__column {
+    float: left;
+    width: 33%;
+    padding: 10px;
+}
+
+.gallery__column-image{
+    opacity: 0.9;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.gallery__column-image:hover {
+    opacity: 1;
+}
+
+.gallery__row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.comments__box{
+    max-width: 95%;
+    margin: auto;
 }

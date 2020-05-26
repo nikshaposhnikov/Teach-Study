@@ -5,12 +5,21 @@
 {% block title %}Регистрация преподавателя{% endblock %}
 
 {% block content %}
-    <h2>Регистрация нового преподавателя</h2>
-    <p> ** - обязательное поле для заполнения</p>
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
-    </form>
-    <p><a href="{% url 'main:register' %}">Назад</a></p>
+<div class="registration">
+    <div class="registration__header">
+        <p class="registration__name">Регистрация нового преподавателя</p>
+    </div>
+    <div class="registration__form registration__form-teacher">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form layout='horizontal' %}
+            {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
+        </form>
+    </div>
+    <div class="registration-return__button">
+        <a href="{% url 'main:register' %}">
+            <button class="btn-cancel">Назад</button>
+        </a>
+    </div>
+</div>
 {% endblock %}

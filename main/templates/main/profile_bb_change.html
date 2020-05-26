@@ -13,5 +13,6 @@
         {% bootstrap_formset formset layout='horizontal' %}
         {% buttons submit='Исправить' %}{% endbuttons %}
     </form>
-    <p><a href="{% url 'main:profile' %}">Отмена</a></p>
+    <p><a href="{% url 'main:profile' %}">    <button class="btn-cancel">Отмена</button>
+    </a></p>
 {% endblock %}

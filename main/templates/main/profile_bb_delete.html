@@ -6,10 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<h2>Удалить объявление "{{ bb.title }}"?</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% buttons submit='Удалить' %}{% endbuttons %}
-</form>
-    <p><a href="{% url 'main:profile' %}">Отмена</a></p>
+<div class="about__container">
+    <p class="about__name">Удалить объявление "{{ bb.title }}"?</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% buttons submit='Удалить' %}{% endbuttons %}
+    </form>
+    <a href="{% url 'main:profile' %}">
+        <button class="btn-cancel">Отмена</button>
+    </a>
+</div>
 {% endblock %}
