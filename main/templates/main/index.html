@@ -24,9 +24,9 @@
             <div class="ads-item__img-container ">
                 <a href="{{ url }}{{ all }}">
                     {% if bb.image %}
-                    <img class="ads-item__img" src="{% thumbnail bb.image 'default' %}" alt="add image">
+                    <img class="ads-item__img rounded" src="{% thumbnail bb.image 'default' %}" alt="add image">
                     {% else %}
-                    <img class="ads-item__img" src="{% static 'main/empty.jpg' %}" alt="empty image">
+                    <img class="ads-item__img rounded" src="{% static 'main/empty.jpg' %}" alt="empty image">
                     {% endif %}
                 </a>
             </div>

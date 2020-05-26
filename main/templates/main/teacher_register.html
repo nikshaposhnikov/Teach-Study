@@ -7,11 +7,6 @@
 {% block content %}
 <div class="registration">
     <div class="registration__header">
-        <div class="registration-return__button">
-            <a href="{% url 'main:register' %}">
-                <button class="return-btn"> <button class="btn-cancel">Назад</button></button>
-            </a>
-        </div>
         <p class="registration__name">Регистрация нового преподавателя</p>
     </div>
     <div class="registration__form registration__form-teacher">
@@ -20,6 +15,11 @@
             {% bootstrap_form form layout='horizontal' %}
             {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
         </form>
+    </div>
+    <div class="registration-return__button">
+        <a href="{% url 'main:register' %}">
+            <button class="btn-cancel">Назад</button>
+        </a>
     </div>
 </div>
 {% endblock %}

@@ -149,6 +149,7 @@ body {
 .ads-item__img {
     min-width: 250px;
     min-height: 200px;
+    max-width: 90%;
 }
 
 .ads-item__info {
@@ -496,4 +497,29 @@ body {
     position: absolute;
     bottom: 30px;
     right: 30%;
+}
+.gallery__column {
+    float: left;
+    width: 33%;
+    padding: 10px;
+}
+
+.gallery__column-image{
+    opacity: 0.9;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.gallery__column-image:hover {
+    opacity: 1;
+}
+
+.gallery__row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.comments__box{
+    max-width: 95%;
+    margin: auto;
 }

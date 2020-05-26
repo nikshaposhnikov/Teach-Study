@@ -35,9 +35,9 @@
             {% url 'main:detail' group_pk=group.pk pk=bb.pk as url %}
             <a href="{{ url }}{{ all }}">
                 {% if bb.image %}
-                <img class="ads-item__img" src="{% thumbnail bb.image 'default' %}">
+                <img class="ads-item__img rounded" src="{% thumbnail bb.image 'default' %}">
                 {% else %}
-                <img class="ads-item__img" src="{% static 'main/empty.jpg' %}">
+                <img class="ads-item__img rounded" src="{% static 'main/empty.jpg' %}">
                 {% endif %}
             </a>
             <div class="ads-item__info">
