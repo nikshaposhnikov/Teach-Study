@@ -48,10 +48,10 @@ def detail(request, group_pk, pk):
         if c_form.is_valid():
             c_form.save()
             messages.add_message(request, messages.SUCCESS, 'Комментарий добавлен')
+            return redirect('main:detail', group_pk, pk)
         else:
             form = c_form
             messages.add_message(request, messages.WARNING, 'Комментарий не добавлен')
-
     context = {'bb': bb, 'ais': ais, 'comments': comments, 'form': form}
     return render(request, 'main/detail.html', context)
 
@@ -388,6 +388,7 @@ def profile_bb_detail(request, pk):
         if c_form.is_valid():
             c_form.save()
             messages.add_message(request, messages.SUCCESS, 'Комментарий добавлен')
+            return redirect('main:profile_bb_detail', pk)
         else:
             form = c_form
             messages.add_message(request, messages.WARNING, 'Комментарий не добавлен')

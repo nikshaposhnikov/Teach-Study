@@ -36,7 +36,7 @@ CORS_URLS_REGEX = r'^/api/.*$'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kafedrastrat2020@gmail.com'
-EMAIL_HOST_PASSWORD = 'DiplomStrategov98'
+EMAIL_HOST_PASSWORD = 'Diplom98'
 EMAIL_USE_TLS = True
 
 # Application definition
