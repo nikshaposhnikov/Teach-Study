@@ -47,11 +47,11 @@ def detail(request, group_pk, pk):
         c_form = form_class(request.POST)
         if c_form.is_valid():
             c_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Комментарий добавлен')
+            messages.add_message(request, messages.SUCCESS, 'Коментар додано')
             return redirect('main:detail', group_pk, pk)
         else:
             form = c_form
-            messages.add_message(request, messages.WARNING, 'Комментарий не добавлен')
+            messages.add_message(request, messages.WARNING, 'Комаентар не додано')
     context = {'bb': bb, 'ais': ais, 'comments': comments, 'form': form}
     return render(request, 'main/detail.html', context)
 
@@ -98,7 +98,7 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         logout(request)
-        messages.add_message(request, messages.SUCCESS, 'Пользователь удалён')
+        messages.add_message(request, messages.SUCCESS, 'Користувача видалено')
         return super().post(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
@@ -120,7 +120,7 @@ class DeleteTeacherView(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         logout(request)
-        messages.add_message(request, messages.SUCCESS, 'Пользователь удалён')
+        messages.add_message(request, messages.SUCCESS, 'Користувача видалено')
         return super().post(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
@@ -170,7 +170,7 @@ class RegisterTeacherView(CreateView):
 class BBPasswordResetView(PasswordResetView):
     template_name = 'main/password_reset.html'
     success_url = reverse_lazy('main:reset_password_done')
-    success_message = 'Письмо выслано на почту'
+    success_message = 'Лист надіслано на пошту'
 
 
 class PasswordContextMixin:
@@ -215,7 +215,7 @@ class ChangeTeacherInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
     template_name = 'main/change_user_info.html'
     form_class = ChangeTeacherInfoForm
     success_url = reverse_lazy('main:profile')
-    success_message = 'Личные данные изменены'
+    success_message = 'Особисті дані змінені'
 
     def dispatch(self, request, *args, **kwargs):
         self.user_id = request.user.pk
@@ -232,7 +232,7 @@ class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = 'main/change_user_info.html'
     form_class = ChangeUserInfoForm
     success_url = reverse_lazy('main:student_profile')
-    success_message = 'Личные данные пользователя изменены'
+    success_message = 'Особисті дані змінені'
 
     def dispatch(self, request, *args, **kwargs):
         self.user_id = request.user.pk
@@ -254,7 +254,7 @@ def comment_delete(request, group_pk, bb_pk, pk):
     comment = get_object_or_404(Comment, pk=pk)
     if request.method == 'POST':
         comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Комментарий удален')
+        messages.add_message(request, messages.SUCCESS, 'Коментар видалено')
         return redirect('main:detail', group_pk, bb_pk)
     else:
         context = {'comment': comment}
@@ -269,7 +269,7 @@ def comment_change(request, group_pk, bb_pk, pk):
         form = UserCommentForm(request.POST, instance=comment)
         if form.is_valid():
             comment = form.save()
-            messages.add_message(request, messages.SUCCESS, 'Комментарий исправлен')
+            messages.add_message(request, messages.SUCCESS, 'Коментар виправлено')
             return redirect('main:detail', group_pk, bb_pk)
     else:
         form = UserCommentForm(instance=comment)
@@ -283,7 +283,7 @@ def profile_bb_delete(request, pk):
     bb = get_object_or_404(Bb, pk=pk)
     if request.method == 'POST':
         bb.delete()
-        messages.add_message(request, messages.SUCCESS, 'Объявление удалено')
+        messages.add_message(request, messages.SUCCESS, 'Оголошення видалено')
         return redirect('main:profile')
     else:
         context = {'bb': bb}
@@ -301,7 +301,7 @@ def profile_bb_change(request, pk):
             formset = AIFormSet(request.POST, request.FILES, instance=bb)
             if formset.is_valid():
                 formset.save()
-                messages.add_message(request, messages.SUCCESS, 'Объявление исправлено')
+                messages.add_message(request, messages.SUCCESS, 'Оголошення виправлено')
                 return redirect('main:profile')
     else:
         form = BbForm(instance=bb)
@@ -320,7 +320,7 @@ def profile_bb_add(request):
             formset = AIFormSet(request.POST, request.FILES, instance=bb)
             if formset.is_valid():
                 formset.save()
-                messages.add_message(request, messages.SUCCESS, 'Объявление добавлено')
+                messages.add_message(request, messages.SUCCESS, 'Оголошення додано')
                 return redirect('main:profile')
     else:
         form = BbForm(initial={'author': request.user.pk})
@@ -337,7 +337,7 @@ def profile_file_add(request, pk):
         formset = AIFormFileSet(request.POST, request.FILES, instance=sub)
         if formset.is_valid():
             formset.save()
-            messages.add_message(request, messages.SUCCESS, 'Материал изменён')
+            messages.add_message(request, messages.SUCCESS, 'Матеріал змінений')
             return redirect('main:profile_sub_detail', sub.pk)
     else:
         formset = AIFormFileSet(instance=sub)
@@ -387,11 +387,11 @@ def profile_bb_detail(request, pk):
         c_form = form_class(request.POST)
         if c_form.is_valid():
             c_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Комментарий добавлен')
+            messages.add_message(request, messages.SUCCESS, 'Коментар добавлено')
             return redirect('main:profile_bb_detail', pk)
         else:
             form = c_form
-            messages.add_message(request, messages.WARNING, 'Комментарий не добавлен')
+            messages.add_message(request, messages.WARNING, 'Коментар не добавлено')
     context = {'bb': bb, 'ais': ais, 'comments': comments, 'form': form}
     return render(request, 'main/profile_bb_detail.html', context)
 
@@ -1228,7 +1228,7 @@ def login_page(request):
             login(request, user)
             return redirect('main:student_profile')
         else:
-            messages.info(request, 'Вы ввели неверный логин либо пароль')
+            messages.info(request, 'Ви ввели невірний логін або пароль')
 
     context = {'form': form}
     return render(request, 'main/login.html', context)
@@ -1243,7 +1243,7 @@ def other_page(request, page):
 
 
 def index(request):
-    bbs = Bb.objects.filter(is_active=True, group__name__icontains='Общие')
+    bbs = Bb.objects.filter(is_active=True, group__name__icontains='Загальні')
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         q = Q(title__icontains=keyword) | Q(content__icontains=keyword) | \

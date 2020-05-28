@@ -16,15 +16,15 @@
     <div class="ads__header-container">
         <form class="ads__search-form">
             {% bootstrap_form form show_label=False %}
-            {% bootstrap_button content='Искать' button_type='submit' %}
+            {% bootstrap_button content='Шукати' button_type='submit' %}
         </form>
         <div class="ads__header-names">
-            {% if group.name == 'Общие объявления для заочной формы' %}
+            {% if group.name == 'Загальні оголошення для заочної форми' %}
             <p class="ads__header-name"> {{ group.name }}</p>
-            {% elif group.name == 'Общие объявления для очной формы' %}
+            {% elif group.name == 'Загальні оголошення для очної форми' %}
             <p class="ads__header-name"> {{ group.name }}</p>
             {% else %}
-            <p class="ads__header-name">Объявления для {{ group.name }}</p>
+            <p class="ads__header-name">Оголошення для {{ group.name }}</p>
             {% endif %}
         </div>
     </div>

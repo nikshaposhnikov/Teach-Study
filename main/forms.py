@@ -44,7 +44,7 @@ class SearchForm(forms.Form):
 
 class SubGroupForm(forms.ModelForm):
     super_group = forms.ModelChoiceField(queryset=SuperGroup.objects.all(), empty_label=None,
-                                         label='Форма обучения', required=True)
+                                         label='Форма навчання', required=True)
 
     class Meta:
         model = SubGroup
@@ -55,30 +55,30 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         if not AdvUser.objects.filter(email__iexact=email, is_active=True).exists():
-            raise ValidationError("Пользователя не существует")
+            raise ValidationError("Користувача не існує")
         return email
 
 
 class RegisterTeacherForm(forms.ModelForm):
-    first_name = forms.CharField(required=True, label='Имя**', widget=forms.TextInput)
-    last_name = forms.CharField(required=True, label='Фамилия**', widget=forms.TextInput)
-    middle_name = forms.CharField(required=True, label='Отчество**', widget=forms.TextInput)
-    email = forms.EmailField(required=True, label='Адрес электронной почты**', widget=forms.EmailInput)
+    first_name = forms.CharField(required=True, label="Ім'я**", widget=forms.TextInput)
+    last_name = forms.CharField(required=True, label='Прізвище**', widget=forms.TextInput)
+    middle_name = forms.CharField(required=True, label='По батькові**', widget=forms.TextInput)
+    email = forms.EmailField(required=True, label='Адреса електронної пошти**', widget=forms.EmailInput)
     password1 = forms.CharField(label='Пароль**', widget=forms.PasswordInput,
                                 help_text=help_text())
     password2 = forms.CharField(label='Пароль (повторно)**', widget=forms.PasswordInput,
-                                help_text='Повторите пароль')
-    position = forms.CharField(required=True, label='Должность**', widget=forms.TextInput)
-    degree = forms.CharField(required=False, label='Степень', widget=forms.TextInput)
-    rank = forms.CharField(required=False, label='Звание', widget=forms.TextInput)
+                                help_text='Повторіть пароль')
+    position = forms.CharField(required=True, label='Посада**', widget=forms.TextInput)
+    degree = forms.CharField(required=False, label='Ступінь', widget=forms.TextInput)
+    rank = forms.CharField(required=False, label='Звання', widget=forms.TextInput)
 
-    is_teacher = forms.BooleanField(required=True, label='Преподаватель', initial=True, widget=forms.HiddenInput())
+    is_teacher = forms.BooleanField(required=True, label='Викладач', initial=True, widget=forms.HiddenInput())
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         list_email = AdvUser.objects.filter(email=email)
         if list_email.count():
-            raise ValidationError('Такой email уже зарегистрирован')
+            raise ValidationError('Такий email вже зареєстрований')
         return email
 
 
@@ -91,7 +91,7 @@ class RegisterTeacherForm(forms.ModelForm):
     def clean(self):
         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data and \
                 self.cleaned_data['password1'] != self.cleaned_data['password2']:
-            raise forms.ValidationError("Введенные пароли не совпадают")
+            raise forms.ValidationError("Введені паролі не збігаються")
         return self.cleaned_data
 
     def save(self, commit=True):
@@ -110,21 +110,21 @@ class RegisterTeacherForm(forms.ModelForm):
 
 
 class RegisterUserForm(forms.ModelForm):
-    first_name = forms.CharField(required=True, label='Имя**', widget=forms.TextInput)
-    last_name = forms.CharField(required=True, label='Фамилия**', widget=forms.TextInput)
-    group = forms.ModelChoiceField(queryset=SubGroup.objects.all(), required=True, label='Группа*', )
-    email = forms.EmailField(required=True, label='Адрес электронной почты**', widget=forms.EmailInput)
+    first_name = forms.CharField(required=True, label="Ім'я**", widget=forms.TextInput)
+    last_name = forms.CharField(required=True, label='Прізвище**', widget=forms.TextInput)
+    group = forms.ModelChoiceField(queryset=SubGroup.objects.all(), required=True, label='Група*', )
+    email = forms.EmailField(required=True, label='Адреса електронної пошти**', widget=forms.EmailInput)
     password1 = forms.CharField(label='Пароль*', widget=forms.PasswordInput,
                                 help_text=help_text())
     password2 = forms.CharField(label='Пароль (повторно)**', widget=forms.PasswordInput,
-                                help_text='Повторите пароль')
+                                help_text='Повторіть пароль')
 
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         list_email = AdvUser.objects.filter(email=email)
         if list_email.count():
-            raise ValidationError('Такой email уже зарегистрирован')
+            raise ValidationError('Такий email вже зареєстрований')
         return email
 
     def clean_password1(self):
@@ -136,7 +136,7 @@ class RegisterUserForm(forms.ModelForm):
     def clean(self):
         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data and \
                 self.cleaned_data['password1'] != self.cleaned_data['password2']:
-            raise forms.ValidationError("Введенные пароли не совпадают")
+            raise forms.ValidationError("Введені паролі не збігаються")
         return self.cleaned_data
 
     def save(self, commit=True):
@@ -155,20 +155,20 @@ class RegisterUserForm(forms.ModelForm):
 
 
 class ChangeTeacherInfoForm(forms.ModelForm):
-    first_name = forms.CharField(required=True, label='Имя', widget=forms.TextInput)
-    last_name = forms.CharField(required=True, label='Фамилия', widget=forms.TextInput)
-    middle_name = forms.CharField(required=True, label='Отчество', widget=forms.TextInput)
-    email = forms.EmailField(required=True, label='Адрес электронной почты', widget=forms.EmailInput)
-    position = forms.CharField(required=True, label='Должность', widget=forms.TextInput)
-    degree = forms.CharField(required=False, label='Степень', widget=forms.TextInput)
-    rank = forms.CharField(required=False, label='Звание', widget=forms.TextInput)
+    first_name = forms.CharField(required=True, label="Ім'я", widget=forms.TextInput)
+    last_name = forms.CharField(required=True, label='Прізвище', widget=forms.TextInput)
+    middle_name = forms.CharField(required=True, label='По батькові', widget=forms.TextInput)
+    email = forms.EmailField(required=True, label='Адреса електронної пошти', widget=forms.EmailInput)
+    position = forms.CharField(required=True, label='Посада', widget=forms.TextInput)
+    degree = forms.CharField(required=False, label='Ступінь', widget=forms.TextInput)
+    rank = forms.CharField(required=False, label='Звання', widget=forms.TextInput)
 
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         list_email = AdvUser.objects.filter(email=email)
         if list_email.count():
-            raise ValidationError('Такой email уже занят')
+            raise ValidationError('Такий email вже зайнятий')
         return email
 
     class Meta:
@@ -178,15 +178,15 @@ class ChangeTeacherInfoForm(forms.ModelForm):
 
 
 class ChangeUserInfoForm(forms.ModelForm):
-    first_name = forms.CharField(required=True, label='Имя', widget=forms.TextInput)
-    last_name = forms.CharField(required=True, label='Фамилия', widget=forms.TextInput)
-    email = forms.EmailField(required=True, label='Адрес электронной почты', widget=forms.EmailInput)
+    first_name = forms.CharField(required=True, label="Ім'я", widget=forms.TextInput)
+    last_name = forms.CharField(required=True, label='Прізвище', widget=forms.TextInput)
+    email = forms.EmailField(required=True, label='Адреса електронної пошти', widget=forms.EmailInput)
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         list_email = AdvUser.objects.filter(email=email)
         if list_email.count():
-            raise ValidationError('Такой email уже занят')
+            raise ValidationError('Такий email вже зайнятий')
         return email
 
     # def __init__(self, *args, **kwargs):
@@ -207,7 +207,7 @@ class SetPasswordForm(forms.Form):
     password
     """
     error_messages = {
-        'password_mismatch': _('Два поля пароля не совпадают.'),
+        'password_mismatch': _('Два поля пароля не збігаються.'),
     }
     new_password1 = forms.CharField(
         label=_("New password"),
@@ -252,7 +252,7 @@ class PasswordChangeForm(SetPasswordForm):
     """
     error_messages = {
         **SetPasswordForm.error_messages,
-        'password_incorrect': _("Ваш старый пароль был введен неправильно. Пожалуйста, введите его снова."),
+        'password_incorrect': _("Ваш старий пароль був введений неправильно. Будь ласка, введіть його знову."),
     }
     old_password = forms.CharField(
         label=_("Old password"),

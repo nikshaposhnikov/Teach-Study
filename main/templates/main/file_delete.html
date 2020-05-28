@@ -2,13 +2,13 @@
 
 {% load bootstrap4 %}
 {% block title %}
-{{ file.file }}Удаление файла
+{{ file.file }}Видалення файлу
 {% endblock %}
 
 {% block content %}
-<h2>Удалить файл "{{ file.file }}"?</h2>
+<h2>Видалити файл "{{ file.file }}"?</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% buttons submit='Удалить' %}{% endbuttons %}
+    {% buttons submit='Видалити' %}{% endbuttons %}
 </form>
 {% endblock %}

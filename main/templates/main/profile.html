@@ -5,7 +5,7 @@
 {% load bootstrap4 %}
 
 {% block title %}
-Профиль пользователя
+Профіль користувача
 {% endblock %}
 
 {% block content %}
@@ -14,36 +14,36 @@
     <div class="ads__header-container">
         <form class="ads__search-form">
             {% bootstrap_form form show_label=False %}
-            {% bootstrap_button content='Искать' button_type='submit' %}
+            {% bootstrap_button content='Шукати' button_type='submit' %}
         </form>
         <div class="ads__header-names header-names">
             {% if user.first_name and user.last_name and user.teacher.middle_name %}
             <p class="ads__header-name">
-                Профиль пользователя {{ user.last_name }}
+                Профіль користувача {{ user.last_name }}
                 {{ user.first_name }}
                 {{ user.teacher.middle_name }}</p>
-            <p class="header-names_teacher-info">Ваша должность: {{ user.teacher.position }}</p>
+            <p class="header-names_teacher-info">Ваша посада: {{ user.teacher.position }}</p>
             {% if user.teacher.degree %}
-            <p>Ваша степень: {{ user.teacher.degree }}</p>
+            <p>Ваша ступінь: {{ user.teacher.degree }}</p>
             {% else %}
-            <p>Ваша степень не указана</p>
+            <p>Ваша ступінь не вказана</p>
             {% endif %}
             {% if user.teacher.rank %}
-            <p>Ваше звание: {{ user.teacher.rank }}</p>
+            <p>Ваше звання: {{ user.teacher.rank }}</p>
             {% else %}
-            <p>Ваше звание не указано</p>
+            <p>Ваше звання не вказано</p>
             {% endif %}
             {% elif user.first_name and user.last_name %}
-            <p class="hello_user">Здравствуйте, {{ user.first_name }} {{ user.last_name }}!</p>
+            <p class="hello_user">Вітаємо, {{ user.first_name }} {{ user.last_name }}!</p>
             {% else %}
-            <p>Здравствуйте!</p>
+            <p>Вітаємо!</p>
             {% endif %}
         </div>
     </div>
     {% if bbs %}
-    <p class="ads__header-name">Ваши объявления</p>
+    <p class="ads__header-name">Ваші оголошення</p>
     <p><a href="{% url 'main:profile_bb_add' %}">
-        <button class="btn-add-ads">Добавить объявление</button>
+        <button class="btn-add-ads">Добавити оголошення</button>
     </a></p>
     <div class="ads__container">
         {% for bb in bbs %}
@@ -58,22 +58,22 @@
             </a>
             <div class="ads-item__info">
                 <p>{{ bb.created_at }}</p>
-                {% if bb.group.name == 'Общие объявления для заочной формы' %}
+                {% if bb.group.name == 'Загальні оголошення для заочної форми' %}
                 <p> {{ bb.group.name }}</p>
-                {% elif bb.group.name == 'Общие объявления для очной формы' %}
+                {% elif bb.group.name == 'Загальні оголошення для очної форми' %}
                 <p> {{ bb.group.name }}</p>
                 {% else %}
-                <p>Группа: {{ bb.group.name }}</p>
+                <p>Група: {{ bb.group.name }}</p>
                 {% endif %}
                 <!--                <p><a href="{{ url }}" class="ads-item__info-name">{{ bb.title }}</a></p>--><p
                     class="ads-item__info-name">{{ bb.title }}</p>
                 <p class="ads-item__content">{{ bb.content }}</p>
                 <div class="ads-item__buttons">
                     <a href="{% url 'main:profile_bb_change' pk=bb.pk %}">
-                        <button class="btn-edit-ads">Исправить объявление</button>
+                        <button class="btn-edit-ads">Редагувати оголошення</button>
                     </a>
                     <a href="{% url 'main:profile_bb_delete' pk=bb.pk %}">
-                        <button class="btn-delete-ads">Удалить объявление</button>
+                        <button class="btn-delete-ads">Видалити оголошення</button>
                     </a>
                 </div>
             </div>
@@ -82,18 +82,18 @@
         {% bootstrap_pagination page url=keyword %}
     </div>
     {% else %}
-    <h3>На данный момент вы не опубликовали ни одного объявления</h3>
-    <p><a href="{% url 'main:profile_bb_add' %}">Добавить объявление</a></p>
+    <h3>На даний момент ви не опублікували жодного оголошення</h3>
+    <p><a href="{% url 'main:profile_bb_add' %}">Додати оголошення</a></p>
     {% endif %}
     {% else %}
     <div class="ads__header-container">
         <form class="ads__search-form">
             {% bootstrap_form form show_label=False %}
-            {% bootstrap_button content='Искать' button_type='submit' %}
+            {% bootstrap_button content='Шукати' button_type='submit' %}
         </form>
         {% if bbs %}
         <div class="ads__header-names">
-            <p class="ads__header-name">Объявления для вашей группы {{ user.group.name }} </p>
+            <p class="ads__header-name">Оголошення для вашої групи {{ user.group.name }} </p>
         </div>
     </div>
     <div class="ads__container">
@@ -111,7 +111,7 @@
             </div>
             <div class="ads-item__info">
                 <p>{{ bb.created_at }}</p>
-                <p>Группа: {{ bb.group.name }}</p>
+                <p>Група: {{ bb.group.name }}</p>
                 <p><a href="{{ url }}" class="ads-item__info-name">{{ bb.title }}</a></p>
                 <div class="ads-item__content-container">
                     <p class="ads-item__content">{{ bb.content }}</p>
@@ -129,7 +129,7 @@
         {% bootstrap_pagination page url=keyword %}
     </div>
     {% else %}
-    <p class="ads__header-name">На данный момент для вашей группы нет объявлений</p>
+    <p class="ads__header-name">На даний момент для вашої групи немає оголошень</p>
 </div>
 {% endif %}
 {% endif %}
