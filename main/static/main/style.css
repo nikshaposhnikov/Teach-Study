@@ -147,9 +147,8 @@ body {
 }
 
 .ads-item__img {
-    min-width: 250px;
-    min-height: 200px;
-    max-width: 90%;
+    width: 300px;
+    height: 250px;
 }
 
 .ads-item__info {
@@ -313,7 +312,7 @@ body {
 }
 
 .schedule__header {
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .to-schedule-list {
@@ -493,18 +492,20 @@ body {
 .header-names_teacher-info {
     padding-top: 1rem;
 }
-.btn-cancel.edit-teacher-info{
+
+.btn-cancel.edit-teacher-info {
     position: absolute;
     bottom: 30px;
     right: 30%;
 }
+
 .gallery__column {
     float: left;
     width: 33%;
     padding: 10px;
 }
 
-.gallery__column-image{
+.gallery__column-image {
     opacity: 0.9;
     cursor: pointer;
     max-width: 100%;
@@ -519,7 +520,92 @@ body {
     display: table;
     clear: both;
 }
-.comments__box{
+
+.comments__box {
     max-width: 95%;
     margin: auto;
+}
+
+table.calendar {
+    width: 98%;
+    margin-bottom: 0;
+}
+
+table.calendar > thead > tr > th {
+    text-align: center;
+}
+
+table.calendar > tbody > tr > td {
+    min-height: 100px;
+    vertical-align: middle;
+}
+
+table.calendar > tbody > tr > td > div {
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+}
+
+table.calendar > tbody > tr > td.has-events {
+    color: white;
+    cursor: default;
+    padding: 0;
+    border-radius: 4px;
+    background-color: #243b7f;
+}
+
+table.calendar > tbody > tr > td.no-events {
+    height: 100px;
+}
+
+table.calendar > tbody > tr > td.has-events div:nth-child(2) {
+    border-top: 4px solid white;
+}
+
+table.calendar > tbody > tr > td.has-events > div {
+    padding: 0.5rem;
+}
+
+table.calendar > tbody > tr > td.has-events > div:first-child {
+    border-left: 0;
+    margin-left: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table.calendar > tbody > tr > td.has-events > div.practice {
+    opacity: 0.7;
+}
+
+table.calendar > tbody > tr > td.has-events > div > span {
+    display: block;
+    text-align: center;
+}
+
+table.calendar > tbody > tr > td.has-events > div > span a {
+    color: white;
+}
+
+table.calendar > tbody > tr > td.has-events > div > span.title {
+    font-weight: bold;
+}
+
+table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > td {
+    border: 0;
+}
+
+.table tbody tr.hover td, .table tbody tr.hover th {
+    background-color: whiteSmoke;
+}
+
+.table tbody tr td:first-child {
+    font-weight: bold;
+}
+
+.schedule-list__item-name {
+    text-align: center;
 }
