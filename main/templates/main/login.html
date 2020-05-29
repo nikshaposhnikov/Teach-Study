@@ -2,16 +2,16 @@
 
 {% load bootstrap4 %}
 
-{% block title %}Вход{% endblock %}
+{% block title %}Вхід{% endblock %}
 
 {% block content %}
 <div class="registration">
     <div class="registration__header">
-        <p class="registration__name">Вход</p>
+        <p class="registration__name">Вхід</p>
     </div>
     {% if user.is_authenticated %}
     <div class="about__info">
-        <p>Вы уже выполнили вход.</p>
+        <p>Ви вже виконали вхід</p>
     </div>
     {% else %}
     <div class="registration__form">
@@ -20,12 +20,12 @@
             {% bootstrap_form form layout='horizontal' %}
             <input type="hidden" name="text" value="{{ next }}">
             <div class="registration__btn-container">
-                {% buttons submit='Войти' %} {% endbuttons %}
+                {% buttons submit='Увійти' %} {% endbuttons %}
             </div>
         </form>
         <div class="registration__form-forgot-password">
             <a href="{% url 'main:password_reset' %}">
-                <button class="btn-forgot-password">Забыли пароль?</button>
+                <button class="btn-forgot-password">Забули пароль?</button>
             </a>
         </div>
     </div>

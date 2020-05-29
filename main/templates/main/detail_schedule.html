@@ -5,7 +5,7 @@
 {% load bootstrap4 %}
 
 {% block title %}
-Расписание
+    Розклад
 {% endblock %}
 
 {% block content %}
@@ -975,12 +975,12 @@
         </tbody>
     </table>
     {% else %}
-    <h3>На данный момент для вашей группы не были распределены пары. Дождитесь распределения
-        от администратора сайта</h3>
+    <h3>На даний момент для вашої групи не були розподілені пари. Дочекайтеся розподілу
+        від адміністратора сайту.</h3>
     {% endif %}
     <p>
         <a href="{% url 'main:list_schedule' %}">
-            <button class="to-schedule-list">К списку расписаний</button>
+            <button class="to-schedule-list">До списку розкладів</button>
         </a></p>
 </section>
 {% endblock %}

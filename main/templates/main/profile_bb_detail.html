@@ -3,7 +3,7 @@
 {% load bootstrap4 %}
 
 {% block title %}
-{{ bb.title }} - Профиль пользователя
+{{ bb.title }} - Профіль користувача
 {% endblock %}
 {% block content %}
 <div class="ads-detail white-bg">
@@ -15,7 +15,7 @@
             <p class="ads-item__info-name"> {{ bb.title }}</p>
             <div class="ads-item__content-container">
                 <p class="ads-item__content">{{ bb.content }}</p></div>
-            <p class="text-right font-italic">Объявление добавлено
+            <p class="text-right font-italic">Оголошення додано
                 {{ bb.created_at }}</p>
         </div>
     </div>
@@ -30,7 +30,7 @@
     {% endif %}
     {% if user.is_teacher %}
     <p><a href="{% url 'main:profile' %}">
-        <button class="btn-cancel">Назад</button>
+            <button class="btn-cancel">Назад</button>
     </a></p>
     {% else %}
     <p><a href="{% url 'main:student_profile' %}">
@@ -38,11 +38,11 @@
     </a></p>
     {% endif %}
     <div class="comments__box">
-        <h4 class="">Новый комментарий</h4>
+        <h4 class="">Новий коментар</h4>
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
-            {% buttons submit='Добавить' %}{% endbuttons %}
+            {% buttons submit='Додати' %}{% endbuttons %}
         </form>
     </div>
     {% if comments %}
@@ -59,17 +59,17 @@
             <p class="text-right mt-2">
                 {% if bb.author.pk == user.pk and comment.author.pk == user.pk %}
                 <a href="{% url 'main:comment_change' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                    Исправить комментарий</a>
+                    Редагувати коментар</a>
                 <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                    Удалить комментарий</a>
+                    Видалити коментар</a>
                 {% elif comment.author.pk == user.pk %}
                 <a href="{% url 'main:comment_change' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                    Исправить комментарий</a>
+                    Редагувати коментар</a>
                 <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                    Удалить комментарий</a>
+                    Видалити коментар</a>
                 {% elif bb.author.pk == user.pk %}
                 <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                    Удалить комментарий</a>
+                    Видалити коментар</a>
                 {% endif %}
             </p>
         </div>

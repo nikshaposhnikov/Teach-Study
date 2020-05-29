@@ -2,18 +2,18 @@
 
 {% load bootstrap4 %}
 
-{% block title %}Регистрация преподавателя{% endblock %}
+{% block title %}Реєстрація викладача{% endblock %}
 
 {% block content %}
 <div class="registration">
     <div class="registration__header">
-        <p class="registration__name">Регистрация нового преподавателя</p>
+        <p class="registration__name">Реєстрація нового викладача</p>
     </div>
     <div class="registration__form registration__form-teacher">
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
-            {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
+            {% buttons submit='Зареєструватися' %}{% endbuttons %}
         </form>
     </div>
     <div class="registration-return__button">

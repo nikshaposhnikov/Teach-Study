@@ -5,41 +5,41 @@
 {% load bootstrap4 %}
 
 {% block title %}
-Расписание
+    Розклад
 {% endblock %}
 {% block content %}
-{% if user.is_anonymous %}
-<section class="schedule-list">
-    <div class="schedule-list__header">
-        <p class="schedule-list__header-name">Список расписаний </p>
-    </div>
-    <div class="schedule-list__container">
-        {% for sh in shs %}
-        <div class="schedule-list__item">
-            {% url 'main:detail_schedule' pk=sh.pk as url %}
-            <div class="schedule-list__item-name">
-                <a href="{{ url }}{{ all }}" class="schedule-list__item-link">{{ sh }}</a>
+    {% if user.is_anonymous %}
+        <section class="schedule-list">
+            <div class="schedule-list__header">
+                <p class="schedule-list__header-name">Список розкладів </p>
             </div>
-        </div>
-        {% endfor %}
-    </div>
-</section>
+            <div class="schedule-list__container">
+                {% for sh in shs %}
+                    <div class="schedule-list__item">
+                        {% url 'main:detail_schedule' pk=sh.pk as url %}
+                        <div class="schedule-list__item-name">
+                            <a href="{{ url }}{{ all }}" class="schedule-list__item-link">{{ sh }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
 
-{% elif user.is_teacher %}
-<section class="schedule-list">
-    <div class="schedule-list__header">
-        <p class="schedule-list__header-name">Список расписаний </p>
-    </div>
-    <div class="schedule-list__container">
-        {% for sh in shs %}
-        <div class="schedule-list__item">
-            {% url 'main:detail_schedule' pk=sh.pk as url %}
-            <div class="schedule-list__item-name">
-                <a href="{{ url }}{{ all }}" class="schedule-list__item-link">{{ sh }}</a>
-            </div>
+    {% elif user.is_teacher %}
+        <section class="schedule-list">
+        <div class="schedule-list__header">
+            <p class="schedule-list__header-name">Список розкладів </p>
         </div>
-        {% endfor %}
-    </div>
+        <div class="schedule-list__container">
+            {% for sh in shs %}
+                <div class="schedule-list__item">
+                    {% url 'main:detail_schedule' pk=sh.pk as url %}
+                    <div class="schedule-list__item-name">
+                        <a href="{{ url }}{{ all }}" class="schedule-list__item-link">{{ sh }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     {% else %}
     {% if sbs %}
     <section class="schedule">
@@ -1007,8 +1007,8 @@
             </tbody>
         </table>
         {% else %}
-        <h3>На данный момент для вашей группы не были распределены пары. Дождитесь распределения
-            от администратора сайта</h3>
+        <h3>На даний момент для вашої групи не були розподілені пари. Дочекайтеся розподілу
+            від адміністратора сайту.</h3>
         {% endif %}
         {% endif %}
     </section>

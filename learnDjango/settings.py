@@ -36,7 +36,7 @@ CORS_URLS_REGEX = r'^/api/.*$'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kafedrastrat2020@gmail.com'
-EMAIL_HOST_PASSWORD = 'DiplomStrategov98'
+EMAIL_HOST_PASSWORD = 'Diplom98'
 EMAIL_USE_TLS = True
 
 # Application definition
@@ -148,7 +148,7 @@ AUTH_USER_MODEL = 'main.AdvUser'
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'Europe/Kiev'
 
