@@ -17,12 +17,12 @@ from .utilities import (send_activation_notification, get_timestamp_path, get_na
                         send_new_comment_notification)
 
 DAYS_OF_WEEK = (
-    ("0", 'Понедельник'),
-    ("1", 'Вторник'),
-    ("2", 'Среда'),
-    ("3", 'Четверг'),
-    ("4", 'Пятница'),
-    ("5", 'Суббота'),
+    ("0", 'Понеділок'),
+    ("1", 'Вівторок'),
+    ("2", 'Середа'),
+    ("3", 'Четвер'),
+    ("4", "П'ятниця"),
+    ("5", 'Субота'),
 )
 
 TIME_CHOICES = (
@@ -36,48 +36,48 @@ TIME_CHOICES = (
 
 
 class Structure(models.Model):
-    structure_name = models.CharField(max_length=15, verbose_name='Учебный корпус')
+    structure_name = models.CharField(max_length=15, verbose_name='Учбовий корпус')
 
     def __str__(self):
         return self.structure_name
 
     class Meta:
-        verbose_name_plural = 'Учебные корпуса'
-        verbose_name = 'Учебный корпус'
+        verbose_name_plural = 'Учбові корпуса'
+        verbose_name = 'Учбовий корпус'
         ordering = ['structure_name']
 
 
 class Auditory(models.Model):
-    auditory_number = models.CharField(max_length=5, verbose_name='Аудитория')
+    auditory_number = models.CharField(max_length=5, verbose_name='Аудиторія')
 
     def __str__(self):
         return self.auditory_number
 
     class Meta:
-        verbose_name_plural = 'Аудитории'
-        verbose_name = 'Аудитория'
+        verbose_name_plural = 'Аудиторії'
+        verbose_name = 'Аудиторія'
         ordering = ['auditory_number']
 
 
 class Schedule(models.Model):
-    group = models.ForeignKey('SubGroup', on_delete=models.CASCADE, verbose_name='Группа')
+    group = models.ForeignKey('SubGroup', on_delete=models.CASCADE, verbose_name='Група')
 
     def __str__(self):
-        return 'Расписание для группы --- ' + str(self.group)
+        return 'Рзклад групи --- ' + str(self.group)
 
     class Meta:
-        verbose_name = 'Расписание'
-        verbose_name_plural = 'Расписание'
+        verbose_name = 'Розклад'
+        verbose_name_plural = 'Розклад'
 
 
 class AdditionalSchedule(models.Model):
-    schedule = models.ForeignKey('Schedule', on_delete=models.CASCADE, verbose_name='Расписание')
-    subject = models.ForeignKey('Subject', on_delete=models.PROTECT, null=True, verbose_name='Дисциплина')
-    teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=True, verbose_name='Преподаватель')
-    structure = models.ForeignKey('Structure', on_delete=models.PROTECT, null=True, verbose_name='Учебный корпус')
-    auditory = models.ForeignKey('Auditory', on_delete=models.PROTECT, null=True, verbose_name='Аудитория')
-    start_time = models.CharField(max_length=10, choices=TIME_CHOICES, null=True, verbose_name='Начало занятия')
-    day = models.CharField(max_length=1, choices=DAYS_OF_WEEK, null=True, verbose_name='День недели')
+    schedule = models.ForeignKey('Schedule', on_delete=models.CASCADE, verbose_name='Розклад')
+    subject = models.ForeignKey('Subject', on_delete=models.PROTECT, null=True, verbose_name='Дисципліна')
+    teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=True, verbose_name='Викладач')
+    structure = models.ForeignKey('Structure', on_delete=models.PROTECT, null=True, verbose_name='Учбовий корпус')
+    auditory = models.ForeignKey('Auditory', on_delete=models.PROTECT, null=True, verbose_name='Аудиторія')
+    start_time = models.CharField(max_length=10, choices=TIME_CHOICES, null=True, verbose_name='Початок заняття')
+    day = models.CharField(max_length=1, choices=DAYS_OF_WEEK, null=True, verbose_name='День тижня')
 
     # def clean(self):
     #     try:
@@ -102,50 +102,50 @@ class AdditionalSchedule(models.Model):
     #         super(AdditionalSchedule, self).clean(*args, **kwargs)
 
     def __str__(self):
-        return 'Добавление занятий'
+        return 'Додання занять'
 
     class Meta:
-        verbose_name_plural = 'Продолжение расписания'
-        verbose_name = 'Продолжение расписания'
+        verbose_name_plural = 'Продовження розклду'
+        verbose_name = 'Продовження розкладу'
 
 
 class Subject(models.Model):
-    name_of_subject = models.CharField(max_length=220, verbose_name='Название предмета')
+    name_of_subject = models.CharField(max_length=220, verbose_name='Назва дисципліни')
 
     def __str__(self):
         return self.name_of_subject
 
     class Meta:
-        verbose_name_plural = 'Предметы'
-        verbose_name = 'Предмет'
+        verbose_name_plural = 'Дисципліни'
+        verbose_name = 'Дисципліна'
         ordering = ['name_of_subject']
 
 
 class AdditionalFile(models.Model):
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет')
-    file = models.FileField(upload_to=get_namestamp_path, verbose_name='Материал')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Дисципліна')
+    file = models.FileField(upload_to=get_namestamp_path, verbose_name='Матеріал')
 
     def __str__(self):
         return self.file.name
 
     class Meta:
-        verbose_name_plural = 'Дополнительные материалы'
-        verbose_name = 'Дополнительный материал'
+        verbose_name_plural = 'Додаткові матеріали'
+        verbose_name = 'Дотатковий матеріал'
 
 
 class Comment(models.Model):
-    bb = models.ForeignKey('Bb', on_delete=models.CASCADE, verbose_name='Объявление')
+    bb = models.ForeignKey('Bb', on_delete=models.CASCADE, verbose_name="Оголошення")
     author = models.ForeignKey('AdvUser', on_delete=models.CASCADE, verbose_name='Автор')
-    content = models.TextField(verbose_name='Содержание')
-    is_active = models.BooleanField(default=True, db_index=True, verbose_name='Выводить на экран?')
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликован')
+    content = models.TextField(verbose_name='Зміст')
+    is_active = models.BooleanField(default=True, db_index=True, verbose_name='Виводити на головній сторінці?')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опублікован')
 
     def __str__(self):
         return self.content
 
     class Meta:
-        verbose_name_plural = 'Комментарии'
-        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Коментарі'
+        verbose_name = 'Коментарій'
         ordering = ['-created_at']
 
 
@@ -159,26 +159,26 @@ post_save.connect(post_save_dispatcher, sender=Comment)
 
 
 class AdditionalImage(models.Model):
-    bb = models.ForeignKey('Bb', on_delete=models.CASCADE, verbose_name='Объявление')
-    image = models.ImageField(upload_to=get_timestamp_path, verbose_name='Изображение')
+    bb = models.ForeignKey('Bb', on_delete=models.CASCADE, verbose_name="Оголошення")
+    image = models.ImageField(upload_to=get_timestamp_path, verbose_name='Зображення')
 
     def __str__(self):
         return self.image.name
 
     class Meta:
-        verbose_name_plural = 'Дополнительные иллюстрации'
-        verbose_name = 'Дополнительная иллюстрация'
+        verbose_name_plural = 'Додаткові зображення'
+        verbose_name = 'Додаткове зображення'
 
 
 class Bb(models.Model):
-    group = models.ForeignKey('SubGroup', on_delete=models.CASCADE, verbose_name='Группа')
+    group = models.ForeignKey('SubGroup', on_delete=models.CASCADE, verbose_name='Група')
     title = models.CharField(max_length=40, verbose_name='Заголовок')
-    content = models.TextField(verbose_name='Информация')
-    image = models.ImageField(blank=True, upload_to=get_timestamp_path, verbose_name='Изображение')
+    content = models.TextField(verbose_name='Інформація')
+    image = models.ImageField(blank=True, upload_to=get_timestamp_path, verbose_name='Зображення')
     author = models.ForeignKey('Teacher', on_delete=models.CASCADE,
-                               verbose_name='Автор объявления')
-    is_active = models.BooleanField(default=True, db_index=True, verbose_name='Выводить в списке?')
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
+                               verbose_name="Автор оголошення")
+    is_active = models.BooleanField(default=True, db_index=True, verbose_name='Виводити на головній сторінці?')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубліковано')
 
     def __str__(self):
         return self.title
@@ -191,19 +191,19 @@ class Bb(models.Model):
     def full_name(obj):
         return "%s %s %s" % (obj.author.last_name, obj.author.first_name, obj.author.middle_name)
 
-    full_name.short_description = 'Преподаватель'
+    full_name.short_description = 'Викладач'
 
     class Meta:
-        verbose_name_plural = 'Объявления'
-        verbose_name = 'Объявление'
+        verbose_name_plural = "Оголошення"
+        verbose_name = "Оголошення"
         ordering = ['-created_at']
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=50, db_index=True, unique=True, verbose_name='Название')
+    name = models.CharField(max_length=50, db_index=True, unique=True, verbose_name='Назва')
     order = models.SmallIntegerField(default=0, db_index=True, verbose_name='Порядок')
     super_group = models.ForeignKey('SuperGroup', on_delete=models.PROTECT, null=True, blank=True,
-                                    verbose_name='Форма обучения')
+                                    verbose_name='Форма навчання')
 
 
 class SuperGroupManager(models.Manager):
@@ -220,8 +220,8 @@ class SuperGroup(Group):
     class Meta:
         proxy = True
         ordering = ["order", "name"]
-        verbose_name = 'Форма обучения'
-        verbose_name_plural = 'Формы обучения'
+        verbose_name = 'Форма навчання'
+        verbose_name_plural = 'Форми навчання'
 
 
 class SubGroupManager(models.Manager):
@@ -238,8 +238,8 @@ class SubGroup(Group):
     class Meta:
         proxy = True
         ordering = ['super_group__order', 'super_group__name', 'order', 'name']
-        verbose_name = 'Группа'
-        verbose_name_plural = 'Группы'
+        verbose_name = 'Група'
+        verbose_name_plural = 'Групи'
 
 
 user_registrated = Signal(providing_args=['instance'])
@@ -257,10 +257,10 @@ class AdvUser(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)  # changes email to unique and blank to false
     REQUIRED_FIELDS = []  # removes email from REQUIRED_FIELDS
     username = models.CharField(max_length=40, unique=False, default='')
-    group = models.ForeignKey('SubGroup', on_delete=models.PROTECT, null=True, verbose_name='Группа')
-    is_teacher = models.BooleanField(default=False, verbose_name='Преподаватель')
-    is_activated = models.BooleanField(default=True, db_index=True, verbose_name='Прошел активацию?')
-    send_messages = models.BooleanField(default=True, verbose_name='Слать оповещания о новых комментариях?')
+    group = models.ForeignKey('SubGroup', on_delete=models.PROTECT, null=True, verbose_name='Група')
+    is_teacher = models.BooleanField(default=False, verbose_name='Викладач')
+    is_activated = models.BooleanField(default=True, db_index=True, verbose_name='Пройшов активацію?')
+    send_messages = models.BooleanField(default=True, verbose_name='Слати оповещанія про нові коментарі?')
 
     def delete(self, *args, **kwargs):
         Comment.objects.filter(author=self.pk).delete()
@@ -272,16 +272,16 @@ class AdvUser(AbstractUser):
     full_name.short_description = 'Студент'
 
     class Meta(AbstractUser.Meta):
-        verbose_name_plural = 'Студенты'
+        verbose_name_plural = 'Студенти'
         verbose_name = 'Студент'
         ordering = ['last_name']
 
 
 class Teacher(AdvUser):
-    middle_name = models.CharField(max_length=50, db_index=True, verbose_name='Отчество')
-    position = models.CharField(max_length=50, db_index=True, verbose_name='Должность')
-    degree = models.CharField(max_length=100, blank=True, verbose_name='Степень')
-    rank = models.CharField(max_length=40, blank=True, verbose_name='Звание')
+    middle_name = models.CharField(max_length=50, db_index=True, verbose_name='По батькові')
+    position = models.CharField(max_length=50, db_index=True, verbose_name='Посада')
+    degree = models.CharField(max_length=100, blank=True, verbose_name='Ступінь')
+    rank = models.CharField(max_length=40, blank=True, verbose_name='Звання')
 
     def delete(self, *args, **kwargs):
         Comment.objects.filter(author=self.pk).delete()
@@ -292,11 +292,11 @@ class Teacher(AdvUser):
     def full_name(obj):
         return "%s %s %s" % (obj.last_name, obj.first_name, obj.middle_name)
 
-    full_name.short_description = 'Преподаватель'
+    full_name.short_description = 'Викладач'
 
     class Meta(AbstractUser.Meta):
-        verbose_name_plural = 'Преподаватели'
-        verbose_name = 'Преподаватель'
+        verbose_name_plural = 'Викладачі'
+        verbose_name = 'Викладач'
         ordering = ['last_name', 'first_name', 'middle_name']
 
 
@@ -308,11 +308,11 @@ def notify_student(sender, instance, created, **kwargs):
             host = 'http://' + ALLOWED_HOSTS[0] + '/accounts/profile/' + str(instance.pk)
         else:
             host = 'http://localhost:8000/accounts/profile/' + str(instance.pk)
-        subject = 'Добавлено новое объявление'
-        html_message = '<p>Для вашей группы было добавлено новое объявление.</p>' \
-                       '<p>Для того, чтобы его прочитать, перейдите по ссылке: <br\>' \
+        subject = 'Додане нове оголошення'
+        html_message = '<p>Для вашої групи було додано нове оголошення.</p>' \
+                       '<p>Для того, щоб його подивитись, перейдіть за посиланням: <br\>' \
                        '<a href="%s">%s</a></p> ' \
-                       '<p>С уажением, администрация сайта Teach&Study</p> ' \
+                       '<p>З повагою, адміністрація сайту Teach&Study</p> ' \
                        % (host, host)
         admin = AdvUser.objects.filter(username='admin')
         email = ''
@@ -343,11 +343,11 @@ def notify_admin(sender, instance, created, **kwargs):
                 0] + '/admin/main/teacher/?q=' + instance.last_name + "+" + instance.first_name
         else:
             host = 'http://localhost:8000/admin/main/teacher/?q=' + instance.last_name + "+" + instance.first_name
-        subject = 'Создан новый преподаватель'
-        html_message = '<p>Был зарегистрирован преподаватель <strong>%s</strong> <strong>%s</strong> ' \
+        subject = 'Створений новий викладач'
+        html_message = '<p>Був зареєстрований викладач <strong>%s</strong> <strong>%s</strong> ' \
                        '<strong>%s</strong>.' \
-                       '<p>Активируйте пользователя в <a href="%s">админ-панели</a>, ' \
-                       'если это действительно преподаватель, либо удалите, если это не так.</p> ' \
+                       '<p>Активуйте користувача в <a href="%s">адмін-панелі</a>, ' \
+                       'ящко це дійсно викладач, або видаліть, ящко це не так.</p> ' \
                        % (instance.last_name, instance.first_name, instance.middle_name, host)
         from_addr = instance.email
         admin = AdvUser.objects.filter(username='admin')
@@ -364,11 +364,11 @@ def notify_admin(sender, instance, created, **kwargs):
             host = 'http://' + ALLOWED_HOSTS[0] + '/accounts/login/'
         else:
             host = 'http://localhost:8000/accounts/login/'
-        subject = 'Активация аккаунта'
-        html_message = '<p>Вы были зарегистрированы на сайте <i>Teach&Study</i>.</p>' \
-                       '<p>Теперь вы можете <a href="%s">войти</a> на сайт с правами преподавателя.</p>' \
-                       '<p>Приветствуем вас, коллега.</p> <br\>' \
-                       '<p>С уважением, администрация сайта Teach&Study</p> ' \
+        subject = 'Активація акаунту'
+        html_message = '<p>Ви були зареєстровані на сайті <i>Teach&Study</i>.</p>' \
+                       '<p>Ви можете <a href="%s">увійти</a> на сайт із правами викладача.</p>' \
+                       '<p>Вітаємо вас, колега.</p> <br\>' \
+                       '<p>З повагою, адміністрація сайту Teach&Study</p> ' \
                        % (host,)
         admin = AdvUser.objects.filter(username='admin')
         email = ''

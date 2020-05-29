@@ -4,40 +4,56 @@
 {% load static %}
 {% load bootstrap4 %}
 
-
 {% block content %}
-    <div class="container-fluid mb-2">
-        <div class="row">
-            <div class="col">&nbsp;</div>
-            <form class="col-md-auto form-inline">
+    <div class="ads-page">
+        <div class="ads__header-container">
+            <form class="ads__search-form">
                 {% bootstrap_form form show_label=False %}
-                {% bootstrap_button content='Искать' button_type='submit' %}
+                {% bootstrap_button content='Шукати' button_type='submit' %}
             </form>
-        </div>
-    </div>
-    {% if bbs %}
-        <h2>Общие объявления</h2>
-        <ul class="list-unstyled">
-            {% for bb in bbs %}
-                <li class="media my-5 p-3 border">
-                    {% url 'main:detail' group_pk=bb.group.pk pk=bb.pk as url %}
-                    <a href="{{ url }}{{ all }}">
-                        {% if bb.image %}
-                            <img class="mr-3" src="{% thumbnail bb.image 'default' %}">
-                        {% else %}
-                            <img class="mr-3" src="{% static 'main/empty.jpg' %}">
-                        {% endif %}
-                    </a>
-                    <div class="media-body">
-                        <p>Автор: {{ bb.author.last_name }} {{ bb.author.first_name }}
-                            {{ bb.author.teacher.middle_name }} </p>
-                        <h3><a href="{{ url }}{{ all }}">{{ bb.title }}</a></h3>
-                        <div>{{ bb.content }}</div>
-                        <p class="text-right font-italic">{{ bb.created_at }}</p>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-        {% bootstrap_pagination page url=keyword %}
-    {% endif %}
+            {% if bbs %}
+                <div class="ads__header-names">
+                    <p class="ads__header-name">Оголошення</p>
+                    {% if not user.is_teacher and not user.is_anonymous %}
+                        <a class="ads__header-link" href="{% url 'main:student_profile' %}">Оголошення для моєї
+                            групи</a>
+                    {% endif %}
+                </div>
+                </div>
+                <section class="ads__container">
+                    {% for bb in bbs %}
+                        <div class="ads__item">
+                            {% url 'main:detail' group_pk=bb.group.pk pk=bb.pk as url %}
+                            <div class="ads-item__img-container ">
+                                <a href="{{ url }}{{ all }}">
+                                    {% if bb.image %}
+                                        <img class="ads-item__img rounded" src="{% thumbnail bb.image 'default' %}"
+                                             alt="add image">
+                                    {% else %}
+                                        <img class="ads-item__img rounded" src="{% static 'main/empty.jpg' %}"
+                                             alt="empty image">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="ads-item__info">
+                                <p>{{ bb.created_at }}</p>
+                                <p><a href="{{ url }}{{ all }}" class="ads-item__info-name">{{ bb.title }}</a></p>
+                                <div class="ads-item__content-container">
+                                    <p class="ads-item__content">{{ bb.content }}</p>
+                                    <p class="ads-item__author">
+                                        Автор: {{ bb.author.last_name }} {{ bb.author.first_name }}
+                                        {{ bb.author.teacher.middle_name }} </p>
+                                </div>
+                                <a class="ads-item__button-link" href="{{ url }}{{ all }}">
+                                    <button class="ads-item__button">Перейти</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </section>
+                <div class="pagination">
+                    {% bootstrap_pagination page url=keyword %}
+                </div>
+                </div>
+            {% endif %}
 {% endblock %}

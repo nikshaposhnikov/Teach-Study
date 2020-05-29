@@ -2,13 +2,17 @@
 
 {% load bootstrap4 %}
 
-{% block title %}Удаление пользователя{% endblock %}
+{% block title %}Видалення користувача{% endblock %}
 
 {% block content %}
-<h2>Удаление пользователя {{ object.last_name }} {{ object.first_name }} {{ object.middle_name }}</h2>
-<form method="post">
-    {% csrf_token %}
-    {% buttons submit='Удалить' %}{% endbuttons %}
-</form>
-    <p><a href="{% url 'main:profile' %}">Отмена</a></p>
+<div class="about__container">
+    <p class="about__name">Видалення користувача {{ object.last_name }} {{ object.first_name }}
+        {{ object.middle_name }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {% buttons submit='Видалити' %}{% endbuttons %}
+    </form>
+    <p><a href="{% url 'main:profile' %}">    <button class="btn-cancel">Відміна</button>
+    </a></p>
+</div>
 {% endblock %}

@@ -2,14 +2,18 @@
 
 {% load bootstrap4 %}
 {% block title %}
-Удаление объявления - {{ bb.title }}
+    Видалення оголошення - {{ bb.title }}
 {% endblock %}
 
 {% block content %}
-<h2>Удалить объявление "{{ bb.title }}"?</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% buttons submit='Удалить' %}{% endbuttons %}
-</form>
-    <p><a href="{% url 'main:profile' %}">Отмена</a></p>
+    <div class="about__container">
+        <p class="about__name">Видалення оголошення "{{ bb.title }}"?</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% buttons submit='Видалити' %}{% endbuttons %}
+        </form>
+        <a href="{% url 'main:profile' %}">
+            <button class="btn-cancel">Відміна</button>
+        </a>
+    </div>
 {% endblock %}

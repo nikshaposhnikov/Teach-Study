@@ -2,23 +2,35 @@
 
 {% load bootstrap4 %}
 
-{% block title %}Правка личных данных{% endblock %}
+{% block title %}Редагування особистих даних{% endblock %}
 
 {% block content %}
-    <h2>Правка личных данных пользователя {{ user.get_user_name }}</h2>
+<div class="registration">
+    <div class="registration__header">
+        <p class="registration__name">Редагування особистих даних користувача {{ user.get_user_name }}</p>
+    </div>
     {% if user.is_teacher %}
+    <div class="registration__form">
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
-            {% buttons submit='Сохранить' %}{% endbuttons %}
+            {% buttons submit='Зберегти' %}{% endbuttons %}
         </form>
-        <p><a href="{% url 'main:profile' %}">Отмена</a></p>
+    </div>
+    <p><a href="{% url 'main:profile' %}">
+        <button class="btn-cancel edit-teacher-info">Відміна</button>
+    </a></p>
     {% else %}
+    <div class="registration__form">
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
-            {% buttons submit='Сохранить' %}{% endbuttons %}
+            {% buttons submit='Зберегти' %}{% endbuttons %}
         </form>
-        <p><a href="{% url 'main:student_profile' %}">Отмена</a></p>
-    {% endif %}
+    </div>
+    <p><a href="{% url 'main:student_profile' %}">
+        <button class="btn-cancel edit-teacher-info">Відміна</button>
+    </a></p>
+</div>
+{% endif %}
 {% endblock %}

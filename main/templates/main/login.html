@@ -2,19 +2,33 @@
 
 {% load bootstrap4 %}
 
-{% block title %}Вход{% endblock %}
+{% block title %}Вхід{% endblock %}
 
 {% block content %}
-    <h2>Вход</h2>
+<div class="registration">
+    <div class="registration__header">
+        <p class="registration__name">Вхід</p>
+    </div>
     {% if user.is_authenticated %}
-        <p>Вы уже выполнили вход.</p>
+    <div class="about__info">
+        <p>Ви вже виконали вхід</p>
+    </div>
     {% else %}
-        <form method="post">
+    <div class="registration__form">
+        <form method="post" class="registration__form-item">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
             <input type="hidden" name="text" value="{{ next }}">
-            {% buttons submit='Войти' %} {% endbuttons %}
+            <div class="registration__btn-container">
+                {% buttons submit='Увійти' %} {% endbuttons %}
+            </div>
         </form>
-        <p><a href="{% url 'main:password_reset' %}">Забыли пароль?</a></p>
-    {% endif %}
+        <div class="registration__form-forgot-password">
+            <a href="{% url 'main:password_reset' %}">
+                <button class="btn-forgot-password">Забули пароль?</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

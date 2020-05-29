@@ -6,7 +6,7 @@ from .models import *
 from .utilities import send_activation_notification
 from django.contrib import messages
 
-admin.site.site_header = 'Админстрирование Study&Teach'
+admin.site.site_header = 'Адміністрування Study&Teach'
 
 
 class AdditionalScheduleInline(admin.TabularInline):
@@ -115,21 +115,21 @@ def send_activation_notifications(modeladmin, request, queryset):
     for rec in queryset:
         if not rec.is_activated:
             send_activation_notification(rec)
-    modeladmin.message_user(request, 'Письма с оповещаниями отправлены')
+    modeladmin.message_user(request, 'Листи з оповіщеннням відправлені')
 
 
-send_activation_notifications.short_description = 'Отправка писем с оповещаниями об активации'
+send_activation_notifications.short_description = 'Відправлення листів з оповіщенням про активацію'
 
 
 class NonactivatedFilter(admin.SimpleListFilter):
-    title = 'Прошли активацию?'
+    title = 'Пройшли активацію?'
     parameter_name = 'actstate'
 
     def lookups(self, request, model_admin):
         return (
-            ('activated', 'Прошли'),
-            ('threedays', 'Не прошли более 3 дней'),
-            ('week', 'Не прошли более недели'),
+            ('activated', 'Пройшли'),
+            ('threedays', 'Не пройшли більше 3 днів'),
+            ('week', 'Не пройшли більше тижня'),
         )
 
     def queryset(self, request, queryset):

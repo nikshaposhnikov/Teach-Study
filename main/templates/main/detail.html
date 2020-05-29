@@ -3,74 +3,85 @@
 {% load bootstrap4 %}
 
 {% block title %}
-    {{ bb.title }} - {{ bb.group.name }}
+{{ bb.title }} - {{ bb.group.name }}
 {% endblock %}
 {% block content %}
-    <div class="container-fluid mt-3">
-        <div class="row">
-            {% if bb.image %}
-                <div class="col-md-auto"><img src="{{ bb.image.url }}" class="main-image">
-                    <p>Автор: {{ bb.author.last_name }} {{ bb.author.first_name }}
-                        {{ bb.author.teacher.middle_name }}</p>
-                </div>
-            {% endif %}
-            <div class="col">
-                <h2>{{ bb.title }}</h2>
-                <p>{{ bb.content }}</p>
-                <p class="text-right font-italic">Объявление добавлено
-                    {{ bb.created_at }}</p>
+<div class="ads-detail white-bg">
+    <div class="ads__item">
+
+        {% if bb.image %}
+        <div class="ads-item__img-container">
+            <img src="{{ bb.image.url }}" alt="main image"
+                 class="ads-item__img rounded">
+        </div>
+        {% endif %}
+        <div class="ads-item__info">
+            <p class="ads-item__info-name"> {{ bb.title }}</p>
+            <div class="ads-item__content-container">
+                <p class="ads-item__content">{{ bb.content }}</p>
+                <p class="ads-item__author">Автор: {{ bb.author.last_name }} {{ bb.author.first_name }}
+                    {{ bb.author.teacher.middle_name }}</p>
             </div>
+            <p class="text-right font-italic">Оголошення додано
+                {{ bb.created_at }}</p>
         </div>
     </div>
     {% if ais %}
-        <div class="d-flex justify-content-between flex-wrap mt-5">
-            {% for ai in ais %}
-                <div>
-                    <img class="additional-image" src="{{ ai.image.url }}">
-                </div>
-            {% endfor %}
+    <div class="d-flex justify-content-between flex-wrap mt-5">
+        {% for ai in ais %}
+        <div class="gallery__column">
+            <img class="gallery__column-image" src="{{ ai.image.url }}">
         </div>
+        {% endfor %}
+    </div>
     {% endif %}
     {% if user.is_teacher %}
-        <p><a href="{% url 'main:by_group' pk=bb.group.pk %}{{ all }}">Назад</a></p>
+    <p><a href="{% url 'main:by_group' pk=bb.group.pk %}{{ all }}">
+        <button class="btn-cancel">Назад</button>
+    </a></p>
     {% else %}
-        <p><a href="{% url 'main:index' %}">Назад</a></p>
+    <p><a href="{% url 'main:index' %}">
+        <button class="btn-cancel">Назад</button>
+    </a></p>
     {% endif %}
-        <h4 class="mt-5">Новый комментарий</h4>
+    <div class="comments__box">
+        <h4 class="">Новий коментар</h4>
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
-            {% buttons submit='Добавить' %}{% endbuttons %}
+            {% buttons submit='Добавити' %}{% endbuttons %}
         </form>
-        {% if comments %}
-            <div class="mt-5">
-                {% for comment in comments %}
-                    <div class="my-2 p-2 border">
-                    {% if comment.author.is_teacher %}
-                        <h5>{{ comment.author.teacher.full_name }}</h5>
-                    {% else %}
-                        <h5>{{ comment.author.full_name }}</h5>
-                    {% endif %}
-                        <p>{{ comment.content }}</p>
-                        <p class="text-right font-italic">{{ comment.created_at }}</p>
-                        <p class="text-right mt-2">
-                            {% if bb.author.pk == user.pk and comment.author.full_name == user.full_name %}
-                                <a href="{% url 'main:comment_change' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                                    Исправить комментарий</a>
-                                <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                                    Удалить комментарий</a>
-                            {% elif comment.author.full_name == user.full_name %}
-                                <a href="{% url 'main:comment_change' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                                    Исправить комментарий</a>
-                                <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                                    Удалить комментарий</a>
-                            {% elif bb.author.pk == user.pk %}
-                                <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
-                                    Удалить комментарий</a>
-                            {% endif %}
-                        </p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+    </div>
+    {% if comments %}
+    <div class="mt-5">
+        {% for comment in comments %}
+        <div class="my-2 p-2 border">
+            {% if comment.author.is_teacher %}
+            <h5>{{ comment.author.teacher.full_name }}</h5>
+            {% else %}
+            <h5>{{ comment.author.full_name }}</h5>
+            {% endif %}
+            <p>{{ comment.content }}</p>
+            <p class="text-right font-italic">{{ comment.created_at }}</p>
+            <p class="text-right mt-2">
+                {% if bb.author.pk == user.pk and comment.author.full_name == user.full_name %}
+                <a href="{% url 'main:comment_change' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
+                    Редагувати коментар</a>
+                <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
+                    Видалити коментар</a>
+                {% elif comment.author.full_name == user.full_name %}
+                <a href="{% url 'main:comment_change' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
+                    Редагувати коментар</a>
+                <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
+                    Видалити коментар</a>
+                {% elif bb.author.pk == user.pk %}
+                <a href="{% url 'main:comment_delete' group_pk=comment.bb.group.pk bb_pk=comment.bb.pk pk=comment.pk %}">
+                    Видалити коментар</a>
+                {% endif %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

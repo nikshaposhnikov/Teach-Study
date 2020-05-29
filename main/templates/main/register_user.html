@@ -2,15 +2,25 @@
 
 {% load bootstrap4 %}
 
-{% block title %}Регистрация{% endblock %}
+{% block title %}Реєстрація{% endblock %}
 
 {% block content %}
-    <h2>Регистрация нового пользователя</h2>
-    <p> ** - обязательное поле для заполнения</p>
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        {% buttons submit='Зарегистрироваться' %}{% endbuttons %}
-    </form>
-    <p><a href="{% url 'main:register_teacher' %}">Я преподаватель</a></p>
+<div class="registration">
+    <div class="registration__header">
+        <p class="registration__name">Реєстрація нового користувача</p>
+    </div>
+    <div class="registration__form">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form layout='horizontal' %}
+            {% buttons submit='Зареєструватися' %}
+            {% endbuttons %}
+        </form>
+        <div class="registration__buttons">
+            <a href="{% url 'main:register_teacher' %}">
+                <button class="btn-i-am-teacher">Я викладач</button>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

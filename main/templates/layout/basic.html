@@ -6,94 +6,100 @@
     <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1,  shrink-to-fit=no">
-    <title>{% block title %}Главная{% endblock %} - Доска объявлений</title>
+    <title>{% block title %}Головна{% endblock %} - Дошка оголошень</title>
     {% bootstrap_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     {% bootstrap_javascript jquery='slim' %}
+    <link rel="stylesheet" type="text/css" href="../../static/main/adverts.css">
 </head>
-<body class="container-fluid">
-<header class="mb-4">
-    <h1 class="display-1 text-center">Объявления</h1>
-</header>
-<div class="row">
-    <ul class="col nav justify-content-end border">
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="{% url 'main:index' %}"> <img src="{% static 'main/khpi.jpg' %}" alt="logo" class="logo__img">
+        </a>
+        <p class="logo__name"><a class="logo__link" href="{% url 'main:index' %}">Кафедра стратегічного управління <br>
+            НТУ ХПИ</a></p>
+
+    </div>
+    <nav class="navigation">
         {% if user.is_anonymous %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'main:register' %}">Регистрация</a></li>
+        <div class="navigation__item"><a class="navigation__item-link" href="{% url 'main:register' %}">Реєстрація</a>
+        </div>
         {% endif %}
         {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-                {% if user.is_teacher %}
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                       role="button" aria-haspopup="true"
-                       aria-expanded="false">{{ user.last_name }}
-                        {{ user.first_name }} {{ user.teacher.middle_name }}</a>
-                {% else %}
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                       role="button" aria-haspopup="true" aria-expanded="false">{{ user.last_name }}
-                        {{ user.first_name }}</a>
-                {% endif %}
-                <div class="dropdown-menu">
-                    {% if user.is_teacher %}
-                        <a class="dropdown-item" href="{% url 'main:profile' %}">Мои объявления</a>
-                        <a class="dropdown-item" href="{% url 'main:teacher_subjects' %}">Мои дисциплины</a>
-                        <a class="dropdown-item" href="{% url 'main:list_schedule' %}">Расписание</a>
-                        <a class="dropdown-item" href="{% url 'main:profile_teacher_change' %}">Изменить личные
-                            данные</a>
-                        <a class="dropdown-item" href="{% url 'main:password_change' %}">Изменить пароль</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'main:logout' %}">Выйти</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'main:profile_teacher_delete' %}">Удалить</a>
-                    {% else %}
-                        <a class="dropdown-item" href="{% url 'main:student_subjects' %}">Мои дисциплины</a>
-                        <a class="dropdown-item" href="{% url 'main:student_schedule' %}">Расписание моей группы</a>
-                        <a class="dropdown-item" href="{% url 'main:profile_change' %}">Изменить личные данные</a>
-                        <a class="dropdown-item" href="{% url 'main:password_change' %}">Изменить пароль</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'main:logout' %}">Выйти</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'main:profile_delete' %}">Удалить</a>
-                        </div>
-                        </li>
-                    {% endif %}
+        {% if user.is_teacher %}
+        <a class="nav-link dropdown-toggle navigation__item-link user-name" data-toggle="dropdown" href="#"
+           role="button" aria-haspopup="true"
+           aria-expanded="false">{{ user.last_name }}
+            {{ user.first_name }} {{ user.teacher.middle_name }}</a>
         {% else %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'main:login' %}">Вход</a></li>
+        <a class="nav-link dropdown-toggle navigation__item-link user-name" data-toggle="dropdown" href="#"
+           role="button" aria-haspopup="true" aria-expanded="false">{{ user.last_name }}
+            {{ user.first_name }}</a>
         {% endif %}
-    </ul>
-</div>
-<div class="row">
-    {% if user.is_anonymous %}
-        <nav class="col-md-auto nav flex-column border">
-            <a class="nav-link root" href="{% url 'main:index' %}">Общие объявления</a>
-            <a class="nav-link root" href="{% url 'main:list_schedule' %}">Расписание</a>
-            <a class="nav-link root" href="{% url 'main:other' page='about' %}">О сайте</a>
-        </nav>
-    {% elif user.is_teacher %}
-        <nav class="col-md-auto nav flex-column border">
-            {% for group in groups %}
-                {% ifchanged group.super_group.pk %}
-                    <span class="nav-link root font-weight-bold">
+        <div class="dropdown-menu">
+            {% if user.is_teacher %}
+            <a class="dropdown-item" href="{% url 'main:profile' %}">Мої оголошення</a>
+            <a class="dropdown-item" href="{% url 'main:teacher_subjects' %}">Мої дисципліни</a>
+            <a class="dropdown-item" href="{% url 'main:list_schedule' %}">Розклад</a>
+            <a class="dropdown-item" href="{% url 'main:profile_teacher_change' %}">Змінити особисті
+                данні</a>
+            <a class="dropdown-item" href="{% url 'main:password_change' %}">Змінити пароль</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'main:logout' %}">Вийти</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'main:profile_teacher_delete' %}">Видалити акаунт</a>
+            {% else %}
+            <a class="dropdown-item" href="{% url 'main:student_subjects' %}">Мої дисципліни</a>
+            <a class="dropdown-item" href="{% url 'main:student_schedule' %}">Розклад моєї групи</a>
+            <a class="dropdown-item" href="{% url 'main:profile_change' %}">Змінити особисті данні</a>
+            <a class="dropdown-item" href="{% url 'main:password_change' %}">Змінити пароль</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'main:logout' %}">Вийти</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'main:profile_delete' %}">Видалити акаунт</a>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="navigation__item"><a class="navigation__item-link" href="{% url 'main:login' %}">Вхід</a></div>
+        {% endif %}
+    </nav>
+</header>
+<main class="main">
+    <aside class="sidebar">
+        {% if user.is_anonymous %}
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні
+            оголошення</a></div>
+        <div class="sidebar_item"><a class="sidebar_item-link"
+                                     href="{% url 'main:list_schedule' %}">Розклад</a></div>
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:other' page='about' %}">Про
+            сайт</a></div>
+
+        {% elif user.is_teacher %}
+        <!--        <nav class="col-md-auto nav flex-column border">-->
+        {% for group in groups %}
+        {% ifchanged group.super_group.pk %}
+        <span class="nav-link root font-weight-bold">
                 {{ group.super_group.name }}</span>
-                {% endifchanged %}
-                <a class="nav-link" href="{% url 'main:by_group' pk=group.pk %}">
-                    {{ group.name|slice:16 }}</a>
-            {% endfor %}
-        </nav>
-    {% else %}
-        <nav class="col-md-auto nav flex-column border">
-            <a class="nav-link root" href="{% url 'main:index' %}">Общие объявления</a>
-            <a class="nav-link root" href="{% url 'main:student_profile' %}">Объявления для моей группы</a>
-            <a class="nav-link root" href="{% url 'main:other' page='about' %}">О сайте</a>
-        </nav>
-    {% endif %}
-    <section class="col-border py-2">
+        {% endifchanged %}
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:by_group' pk=group.pk %}">
+            {{ group.name|slice:16 }}</a></div>
+        {% endfor %}
+        <!--        </nav>-->
+        {% else %}
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні оголошення</a></div>
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:student_profile' %}">Оголошення
+            для моєї групи</a></div>
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:other' page='about' %}">Про сайт</a>
+        </div>
+        {% endif %}
+    </aside>
+
+    <section class="main-info_container">
         {% bootstrap_messages %}
         {% block content %}
         {% endblock %}
     </section>
-</div>
-<footer class="mt-3">
-    <p class="text-right font-italic">&copy; преподаватели, студенты 2019 г.</p>
-</footer>
+</main>
 </body>
 </html>

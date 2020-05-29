@@ -5,113 +5,132 @@
 {% load bootstrap4 %}
 
 {% block title %}
-    Профиль пользователя
+Профіль користувача
 {% endblock %}
 
 {% block content %}
-    {% if user.first_name and user.last_name and user.teacher.middle_name %}
-        <h2>Профиль пользователя {{ user.last_name }} {{ user.first_name }} {{ user.teacher.middle_name }}</h2>
-        <p>Ваша должность: {{ user.teacher.position }}</p>
-        {% if user.teacher.degree %}
-            <p>Ваша степень: {{ user.teacher.degree }}</p>
-        {% else %}
-            <p>Ваша степень не указана</p>
-        {% endif %}
-        {% if user.teacher.rank %}
-            <p>Ваше звание: {{ user.teacher.rank }}</p>
-        {% else %}
-            <p>Ваше звание не указано</p>
-        {% endif %}
-    {% elif user.first_name and user.last_name %}
-        <p>Здравствуйте, {{ user.first_name }} {{ user.last_name }}!</p>
-    {% else %}
-        <p>Здравствуйте!</p>
-    {% endif %}
+<div class="ads-page">
     {% if user.is_teacher %}
-        <div class="container-fluid mb-2">
-            <div class="row">
-                <div class="col">&nbsp;</div>
-                <form class="col-md-auto form-inline">
-                    {% bootstrap_form form show_label=False %}
-                    {% bootstrap_button content='Искать' button_type='submit' %}
-                </form>
+    <div class="ads__header-container">
+        <form class="ads__search-form">
+            {% bootstrap_form form show_label=False %}
+            {% bootstrap_button content='Шукати' button_type='submit' %}
+        </form>
+        <div class="ads__header-names header-names">
+            {% if user.first_name and user.last_name and user.teacher.middle_name %}
+            <p class="ads__header-name">
+                Профіль користувача {{ user.last_name }}
+                {{ user.first_name }}
+                {{ user.teacher.middle_name }}</p>
+            <p class="header-names_teacher-info">Ваша посада: {{ user.teacher.position }}</p>
+            {% if user.teacher.degree %}
+            <p>Ваша ступінь: {{ user.teacher.degree }}</p>
+            {% else %}
+            <p>Ваша ступінь не вказана</p>
+            {% endif %}
+            {% if user.teacher.rank %}
+            <p>Ваше звання: {{ user.teacher.rank }}</p>
+            {% else %}
+            <p>Ваше звання не вказано</p>
+            {% endif %}
+            {% elif user.first_name and user.last_name %}
+            <p class="hello_user">Вітаємо, {{ user.first_name }} {{ user.last_name }}!</p>
+            {% else %}
+            <p>Вітаємо!</p>
+            {% endif %}
+        </div>
+    </div>
+    {% if bbs %}
+    <p class="ads__header-name">Ваші оголошення</p>
+    <p><a href="{% url 'main:profile_bb_add' %}">
+        <button class="btn-add-ads">Добавити оголошення</button>
+    </a></p>
+    <div class="ads__container">
+        {% for bb in bbs %}
+        <div class="ads__item">
+            {% url 'main:profile_bb_detail' pk=bb.pk as url %}
+            <a href="{{ url }}">
+                {% if bb.image %}
+                <img class="ads-item__img" src="{% thumbnail bb.image 'default' %}">
+                {% else %}
+                <img class="ads-item__img" src="{% static 'main/empty.jpg' %}">
+                {% endif %}
+            </a>
+            <div class="ads-item__info">
+                <p>{{ bb.created_at }}</p>
+                {% if bb.group.name == 'Загальні оголошення для заочної форми' %}
+                <p> {{ bb.group.name }}</p>
+                {% elif bb.group.name == 'Загальні оголошення для очної форми' %}
+                <p> {{ bb.group.name }}</p>
+                {% else %}
+                <p>Група: {{ bb.group.name }}</p>
+                {% endif %}
+                <!--                <p><a href="{{ url }}" class="ads-item__info-name">{{ bb.title }}</a></p>--><p
+                    class="ads-item__info-name">{{ bb.title }}</p>
+                <p class="ads-item__content">{{ bb.content }}</p>
+                <div class="ads-item__buttons">
+                    <a href="{% url 'main:profile_bb_change' pk=bb.pk %}">
+                        <button class="btn-edit-ads">Редагувати оголошення</button>
+                    </a>
+                    <a href="{% url 'main:profile_bb_delete' pk=bb.pk %}">
+                        <button class="btn-delete-ads">Видалити оголошення</button>
+                    </a>
+                </div>
             </div>
         </div>
-        {% if bbs %}
-            <h3>Ваши объявления</h3>
-            <p><a href="{% url 'main:profile_bb_add' %}">Добавить объявление</a></p>
-            <ul class="list-unstyled">
-                {% for bb in bbs %}
-                    <li class="media my-5 p-3 border">
-                        {% url 'main:profile_bb_detail' pk=bb.pk as url %}
-                        <a href="{{ url }}">
-                            {% if bb.image %}
-                                <img class="mr-3" src="{% thumbnail bb.image 'default' %}">
-                            {% else %}
-                                <img class="mr-3" src="{% static 'main/empty.jpg' %}">
-                            {% endif %}
-                        </a>
-                        <div class="media-body">
-                            {% if bb.group.name == 'Общие объявления для заочной формы' %}
-                                <p> {{ bb.group.name }}</p>
-                            {% elif bb.group.name == 'Общие объявления для очной формы' %}
-                                <p> {{ bb.group.name }}</p>
-                            {% else %}
-                                <p>Группа: {{ bb.group.name }}</p>
-                            {% endif %}
-                            <h3><a href="{{ url }}">{{ bb.title }}</a></h3>
-                            <div>{{ bb.content }}</div>
-                            <p class="text-right font-italic">{{ bb.created_at }}</p>
-                            <p class="text-right mt-2">
-                                <a href="{% url 'main:profile_bb_change' pk=bb.pk %}">Исправить объявление</a>
-                                <a href="{% url 'main:profile_bb_delete' pk=bb.pk %}">Удалить объявление</a>
-                            </p>
-                        </div>
-                    </li>
-                {% endfor %}
-                {% bootstrap_pagination page url=keyword %}
-            </ul>
-        {% else %}
-            <h3>На данный момент вы не опубликовали ни одного объявления</h3>
-            <p><a href="{% url 'main:profile_bb_add' %}">Добавить объявление</a></p>
-        {% endif %}
+        {% endfor %}
+        {% bootstrap_pagination page url=keyword %}
+    </div>
     {% else %}
-        <div class="container-fluid mb-2">
-            <div class="row">
-                <div class="col">&nbsp;</div>
-                <form class="col-md-auto form-inline">
-                    {% bootstrap_form form show_label=False %}
-                    {% bootstrap_button content='Искать' button_type='submit' %}
-                </form>
+    <h3>На даний момент ви не опублікували жодного оголошення</h3>
+    <p><a href="{% url 'main:profile_bb_add' %}">Додати оголошення</a></p>
+    {% endif %}
+    {% else %}
+    <div class="ads__header-container">
+        <form class="ads__search-form">
+            {% bootstrap_form form show_label=False %}
+            {% bootstrap_button content='Шукати' button_type='submit' %}
+        </form>
+        {% if bbs %}
+        <div class="ads__header-names">
+            <p class="ads__header-name">Оголошення для вашої групи {{ user.group.name }} </p>
+        </div>
+    </div>
+    <div class="ads__container">
+        {% for bb in bbs %}
+        <div class="ads__item">
+            {% url 'main:profile_bb_detail' pk=bb.pk as url %}
+            <div class="ads-item__img-container">
+                <a href="{{ url }}">
+                    {% if bb.image %}
+                    <img class="ads-item__img" src="{% thumbnail bb.image 'default' %}" alt="add image">
+                    {% else %}
+                    <img class="ads-item__img" src="{% static 'main/empty.jpg' %}" alt="empty image">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="ads-item__info">
+                <p>{{ bb.created_at }}</p>
+                <p>Група: {{ bb.group.name }}</p>
+                <p><a href="{{ url }}" class="ads-item__info-name">{{ bb.title }}</a></p>
+                <div class="ads-item__content-container">
+                    <p class="ads-item__content">{{ bb.content }}</p>
+                    <p class="ads-item__author">Автор: {{ bb.author.last_name }} {{ bb.author.first_name }}
+                        {{ bb.author.teacher.middle_name }} </p>
+                    <a class="ads-item__button-link" href="{{ url }}{{ all }}">
+                        <button class="ads-item__button">Перейти</button>
+                    </a>
+                </div>
             </div>
         </div>
-        {% if bbs %}
-            <h3>Объявления для вашей группы {{ user.group.name }} </h3>
-            <ul class="list-unstyled">
-                {% for bb in bbs %}
-                    <li class="media my-5 p-3 border">
-                        {% url 'main:profile_bb_detail' pk=bb.pk as url %}
-                        <a href="{{ url }}">
-                            {% if bb.image %}
-                                <img class="mr-3" src="{% thumbnail bb.image 'default' %}">
-                            {% else %}
-                                <img class="mr-3" src="{% static 'main/empty.jpg' %}">
-                            {% endif %}
-                        </a>
-                        <div class="media-body">
-                            <p>Группа: {{ bb.group.name }}</p>
-                            <p>Автор: {{ bb.author.last_name }} {{ bb.author.first_name }}
-                                {{ bb.author.teacher.middle_name }} </p>
-                            <h3><a href="{{ url }}">{{ bb.title }}</a></h3>
-                            <div>{{ bb.content }}</div>
-                            <p class="text-right font-italic">{{ bb.created_at }}</p>
-                        </div>
-                    </li>
-                {% endfor %}
-                {% bootstrap_pagination page url=keyword %}
-            </ul>
-        {% else %}
-            <h3>На данный момент для вашей группы нет объявлений</h3>
-        {% endif %}
-    {% endif %}
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        {% bootstrap_pagination page url=keyword %}
+    </div>
+    {% else %}
+    <p class="ads__header-name">На даний момент для вашої групи немає оголошень</p>
+</div>
+{% endif %}
+{% endif %}
 {% endblock %}
