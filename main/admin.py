@@ -12,7 +12,6 @@ admin.site.site_header = 'Адміністрування Study&Teach'
 class AdditionalScheduleInline(admin.TabularInline):
     model = AdditionalSchedule
 
-
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         field = super().formfield_for_foreignkey(db_field, request, **kwargs)
         if db_field.name == 'teacher':
@@ -23,7 +22,7 @@ class AdditionalScheduleInline(admin.TabularInline):
 
 class ScheduleAdmin(admin.ModelAdmin):
     list_filter = ('group',)
-    inlines = [AdditionalScheduleInline,]
+    inlines = [AdditionalScheduleInline, ]
 
 
 admin.site.register(Schedule, ScheduleAdmin)
@@ -52,7 +51,7 @@ class AdditionalFileInline(admin.TabularInline):
 
 
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ('name_of_subject', )
+    list_display = ('name_of_subject',)
     list_display_links = ['name_of_subject']
     search_fields = ('name_of_subject',)
     fields = ('name_of_subject',)
