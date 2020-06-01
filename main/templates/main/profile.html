@@ -43,7 +43,7 @@
     {% if bbs %}
     <p class="ads__header-name">Ваші оголошення</p>
     <p><a href="{% url 'main:profile_bb_add' %}">
-        <button class="btn-add-ads">Добавити оголошення</button>
+        <button class="btn-add-ads">Додати оголошення</button>
     </a></p>
     <div class="ads__container">
         {% for bb in bbs %}
@@ -82,7 +82,12 @@
         {% bootstrap_pagination page url=keyword %}
     </div>
     {% else %}
-    <h3>На даний момент ви не опублікували жодного оголошення</h3>
+    <div class="about__container">
+        <p class="about__name"></p>
+        <div class="about__info">
+            <p>На даний момент ви не опублікували жодного оголошення</p>
+        </div>
+    </div>
     <p><a href="{% url 'main:profile_bb_add' %}">Додати оголошення</a></p>
     {% endif %}
     {% else %}

@@ -475,7 +475,6 @@ body {
 .ads-detail .ads-item__content-container {
     flex-grow: 1;
     word-wrap: break-word;
-    max-width: 80%;
 }
 
 .btn-delete-ads,
@@ -522,8 +521,9 @@ body {
 }
 
 .comments__box {
+    display: flex;
+    align-items: baseline;
     max-width: 95%;
-    margin: auto;
 }
 
 table.calendar {
@@ -608,4 +608,138 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 
 .schedule-list__item-name {
     text-align: center;
+}
+
+#carouselExampleIndicators {
+    width: 35rem;
+}
+
+#carouselExampleIndicators .d-block.w-100 {
+    height: 400px;
+}
+
+.comment-wrapper .panel-body {
+    max-height: 650px;
+    overflow: auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom: 1px dashed #efefef;
+    margin-bottom: 25px;
+}
+
+.comments__box .form-control {
+    height: 4rem;
+}
+
+.comments__box .form-group {
+    display: flex;
+    max-width: 43.75rem;
+}
+
+.comments__box .btn.btn-primary {
+    width: 7rem;
+    margin: 0;
+    margin-right: 5rem;
+}
+
+.comment__item {
+    max-width: 43.75rem;
+    background-color: #e6f0ff;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.comment__item-names {
+    display: flex;
+    align-items: flex-start;
+}
+
+.comment__item-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.comment__item-name {
+    font-size: 17px;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.btn.btn-primary a {
+    color: white;
+    text-decoration: none;
+}
+
+.comment__item-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment__item-buttons button {
+    margin-left: 1rem;
+}
+
+.comments__box label {
+    display: none;
+}
+
+.comments__box-name {
+    font-size: 18px;
+}
+
+.comments__box-form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.comments__box-form .form-group:last-child {
+    justify-content: flex-end;
+}
+
+.detail-add {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-left: 5%;
+}
+
+.detail-add .ads-item__info {
+    padding-left: 5rem;
+}
+
+.comments__box-container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3rem;
+}
+
+.comments__box-comments {
+    display: flex;
+    flex: 1;
+}
+
+.comments__box-comments .media-list {
+    width: 95%;
+}
+
+.form-group.row textarea {
+    margin-left: 1rem;
+}
+.alert-success{
+    display: none;
+}
+.btn-edit-comment{
+    position: absolute;
+    right: 27%;
+    bottom: 43px;
 }

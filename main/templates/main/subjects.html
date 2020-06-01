@@ -61,8 +61,13 @@
                 </div>
                 {% bootstrap_pagination page url=keyword %}
                 {% else %}
-                <h3>На даний момент для вашої групи не були розподілені пари. Дочекайтеся розподілу
-                    від адміністратора сайту</h3>
+                <div class="about__container">
+                    <p class="about__name"></p>
+                    <div class="about__info">
+                        <p>На даний момент для вашої групи не були розподілені пари. Дочекайтеся розподілу
+                            від адміністратора сайту</p>
+                    </div>
+                </div>
             </section>
         {% endif %}
     {% endif %}

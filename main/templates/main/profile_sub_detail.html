@@ -4,69 +4,74 @@
 {% load static %}
 
 {% block title %}
-    {{ sub.name_of_subject }} - Профіль користувача
+{{ sub.name_of_subject }} - Профіль користувача
 {% endblock %}
 {% block content %}
+<div class="about__container">
+    <p class="about__name">Дисципліна - {{ sub.name_of_subject }}</p>
+    {% if user.is_teacher %}
+    <p><a href="{% url 'main:profile_file_add' sub.pk %}">Додатковий матеріал</a></p>
+    {% endif %}
+    {% if user.is_teacher %}
+    {% if ais %}
+    <div class="d-flex justify-content-between flex-wrap mt-5">
+        <p>Матеріали до дисципліни:</p>
+        <ul class="list-unstyled">
+            {% for ai in ais %}
+            <li class="media my-1 p-2 border">
+                <p><a href="{{ ai.file.url }}">
+                    {{ ai.file }}
+                </a>
+                    {{ ai.file.size|filesizeformat }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
     <div class="about__container">
-        <p class="about__name">Дисципліна - {{ sub.name_of_subject }}</p>
-        {% if user.is_teacher %}
-            <p><a href="{% url 'main:profile_file_add' sub.pk %}">Додатковий матеріал</a></p>
-        {% endif %}
-        {% if user.is_teacher %}
-            {% if ais %}
-                <div class="d-flex justify-content-between flex-wrap mt-5">
-                    <p>Матеріали до дисципліни:</p>
-                    <ul class="list-unstyled">
-                        {% for ai in ais %}
-                            <li class="media my-1 p-2 border">
-                                <p><a href="{{ ai.file.url }}">
-                                    {{ ai.file }}
-                                </a>
-                                    {{ ai.file.size|filesizeformat }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% else %}
-                <h5>На даний момент ви не додавали ніяких додаткових матеріалів</h5>
-            {% endif %}
-            <p><a href="{% url 'main:teacher_subjects' %}">
-                <button class="btn-cancel">Назад</button>
-            </a></p>
-        {% else %}
-            {% if length_name_for_teach > 1 %}
-                <p class="teacher-name">Викладачі - {{ name_for_teacher.0 }}, {{ name_for_teacher.1 }}</p>
-            {% else %}
-                <p class="teacher-name">Викладач - {{ name_for_teacher.0 }}</p>
-            {% endif %}
-            {% if ais %}
-                <div class="studying-files">
-                    <p class="studying-files__name">Матеріали до дисципліни:</p>
-                    <div class="studying-files__container">
-                        {% for ai in ais %}
-                            <div class="studying-files__item">
+        <p class="about__name"></p>
+        <div class="about__info">
+            <p>На даний момент ви не додавали ніяких додаткових матеріалів</p>
+        </div>
+    </div>
+    {% endif %}
+    <p><a href="{% url 'main:teacher_subjects' %}">
+        <button class="btn-cancel">Назад</button>
+    </a></p>
+    {% else %}
+    {% if length_name_for_teach > 1 %}
+    <p class="teacher-name">Викладачі - {{ name_for_teacher.0 }}, {{ name_for_teacher.1 }}</p>
+    {% else %}
+    <p class="teacher-name">Викладач - {{ name_for_teacher.0 }}</p>
+    {% endif %}
+    {% if ais %}
+    <div class="studying-files">
+        <p class="studying-files__name">Матеріали до дисципліни:</p>
+        <div class="studying-files__container">
+            {% for ai in ais %}
+            <div class="studying-files__item">
 
-                                <div><a href="{{ ai.file.url }}"><img class="studying-files__item-img"
-                                                                      src="{% static 'main/blank-file.svg' %}"
-                                                                      alt="file image">
-                                </a></div>
-                                <div class="studying-files__item-link-container">
-                                    <a href="{{ ai.file.url }}" class="studying-files__item-link">
-                                        {{ ai.file }}
-                                    </a></div>
-                                <div><p class="studying-files__item-size"> {{ ai.file.size|filesizeformat }}</p></div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% else %}
-                <p class="studying-files__name">На даний момент додаткових матеріалів немає</p>
-            {% endif %}
-            <p><a href="{% url 'main:student_subjects' %}">
-                <button class="btn-cancel">Назад</button>
-            </a></p>
-            <div class="about__info">
+                <div><a href="{{ ai.file.url }}"><img class="studying-files__item-img"
+                                                      src="{% static 'main/blank-file.svg' %}"
+                                                      alt="file image">
+                </a></div>
+                <div class="studying-files__item-link-container">
+                    <a href="{{ ai.file.url }}" class="studying-files__item-link">
+                        {{ ai.file }}
+                    </a></div>
+                <div><p class="studying-files__item-size"> {{ ai.file.size|filesizeformat }}</p></div>
             </div>
-            </div>
-        {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <p class="studying-files__name">На даний момент додаткових матеріалів немає</p>
+    {% endif %}
+    <p><a href="{% url 'main:student_subjects' %}">
+        <button class="btn-cancel">Назад</button>
+    </a></p>
+    <div class="about__info">
+    </div>
+</div>
+{% endif %}
 {% endblock %}

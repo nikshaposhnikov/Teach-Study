@@ -2,17 +2,21 @@
 
 {% load bootstrap4 %}
 {% block title %}
-    Редагування коментаря {{ comment.content }}
+Редагування коментаря {{ comment.content }}
 {% endblock %}
 
 {% block content %}
-    <h2>Редагування коментаря "{{ comment.content }}"</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        {% buttons submit='Редагувати' %}{% endbuttons %}
-    </form>
-    <p><a href="{% url 'main:detail' group_pk=comment.bb.group.pk pk=comment.bb.pk %}">
-        <button class="btn-cancel">Відміна</button>
-    </a></p>
+<div class="about__container">
+    <p class="about__name">Редагування коментаря</p>
+    <div class="about__info">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form layout='horizontal' %}
+            {% buttons submit='Редагувати' %}{% endbuttons %}
+        </form>
+        <p><a href="{% url 'main:detail' group_pk=comment.bb.group.pk pk=comment.bb.pk %}">
+            <button class="btn-cancel btn-edit-comment">Відміна</button>
+        </a></p>
+    </div>
+</div>
 {% endblock %}
