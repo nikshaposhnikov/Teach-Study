@@ -7,6 +7,6 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         if not AdvUser.objects.filter(email__iexact=email, is_active=True).exists():
-            raise ValidationError("Пользователь с указанным адресом электронной почты не зарегистрирован!")
+            raise ValidationError("Користувач з вказаною адресою електронної пошти не зареєстрований!")
         return email
 

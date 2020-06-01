@@ -63,7 +63,7 @@ class Schedule(models.Model):
     group = models.ForeignKey('SubGroup', on_delete=models.CASCADE, verbose_name='Група')
 
     def __str__(self):
-        return 'Рзклад групи --- ' + str(self.group)
+        return 'Розклад групи --- ' + str(self.group)
 
     class Meta:
         verbose_name = 'Розклад'
@@ -79,34 +79,13 @@ class AdditionalSchedule(models.Model):
     start_time = models.CharField(max_length=10, choices=TIME_CHOICES, null=True, verbose_name='Початок заняття')
     day = models.CharField(max_length=1, choices=DAYS_OF_WEEK, null=True, verbose_name='День тижня')
 
-    # def clean(self):
-    #     try:
-    #         AdditionalSchedule.objects.get(start_time=self.cleaned_data['start_time'],
-    #                                        day=self.cleaned_data['day'])
-    #         # if we get this far, we have an exact match for this form's data
-    #         raise self.ValidationError("Exists already!")
-    #     except AdditionalSchedule.DoesNotExist:
-    #         # because we didn't get a match
-    #         pass
-    #
-    #     return self.cleaned_data
-
-    # def clean(self, *args, **kwargs):
-    #
-    #     sh = AdditionalSchedule.objects.filter(schedule=self.schedule, start_time=self.start_time,
-    #                                            day=self.day)
-    #     if (AdditionalSchedule.objects.filter(schedule=self.schedule, start_time=self.start_time,
-    #                                            day=self.day).exists()):
-    #         raise ValidationError('Нельзя назначить пару в одно и тоже время!')
-    #     else:
-    #         super(AdditionalSchedule, self).clean(*args, **kwargs)
-
     def __str__(self):
         return 'Додання занять'
 
     class Meta:
         verbose_name_plural = 'Продовження розклду'
         verbose_name = 'Продовження розкладу'
+        unique_together = (('schedule_id', 'subject', 'structure', 'auditory', 'start_time', 'day'),)
 
 
 class Subject(models.Model):
