@@ -2,15 +2,23 @@
 
 {% load bootstrap4 %}
 {% block title %}
-    {{ sub.title }}Додатковий матеріал - Профіль користувача
+{{ sub.title }}Додатковий матеріал - Профіль користувача
 {% endblock %}
 
 {% block content %}
-    <h2>Загрузка, редагування, видалення додаткових матеріалів</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_formset formset layout='horizontal' %}
-        {% buttons submit='Зберегти' %}{% endbuttons %}
-    </form>
-    <p><a href="{% url 'main:profile_sub_detail' sub.pk %}"> <button class="btn-cancel">Назад</button></a></p>
+<div class="about__container">
+    <p class="about__name">Загрузка, редагування, видалення додаткових матеріалів</p>
+    <div class="about__info">
+        <div class="registration__form">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_formset formset layout='horizontal' %}
+                {% buttons submit='Зберегти' %}{% endbuttons %}
+            </form>
+        </div>
+        <p><a href="{% url 'main:profile_sub_detail' sub.pk %}">
+            <button class="btn-cancel">Назад</button>
+        </a></p>
+    </div>
+</div>
 {% endblock %}

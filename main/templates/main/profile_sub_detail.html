@@ -10,22 +10,30 @@
 <div class="about__container">
     <p class="about__name">Дисципліна - {{ sub.name_of_subject }}</p>
     {% if user.is_teacher %}
-    <p><a href="{% url 'main:profile_file_add' sub.pk %}">Додатковий матеріал</a></p>
+    <p><a href="{% url 'main:profile_file_add' sub.pk %}">
+        <button class="btn btn-primary">
+            Додати матеріал</button></a></p>
     {% endif %}
     {% if user.is_teacher %}
     {% if ais %}
-    <div class="d-flex justify-content-between flex-wrap mt-5">
-        <p>Матеріали до дисципліни:</p>
-        <ul class="list-unstyled">
+    <div class="studying-files">
+        <p class="studying-files__name">Матеріали до дисципліни:</p>
+        <div class="studying-files__container">
             {% for ai in ais %}
-            <li class="media my-1 p-2 border">
-                <p><a href="{{ ai.file.url }}">
-                    {{ ai.file }}
-                </a>
-                    {{ ai.file.size|filesizeformat }}</p>
-            </li>
+            <div class="studying-files__item">
+
+                <div><a href="{{ ai.file.url }}"><img class="studying-files__item-img"
+                                                      src="{% static 'main/blank-file.svg' %}"
+                                                      alt="file image">
+                </a></div>
+                <div class="studying-files__item-link-container">
+                    <a href="{{ ai.file.url }}" class="studying-files__item-link">
+                        {{ ai.file }}
+                    </a></div>
+                <div><p class="studying-files__item-size"> {{ ai.file.size|filesizeformat }}</p></div>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
     {% else %}
     <div class="about__container">
@@ -70,8 +78,6 @@
     <p><a href="{% url 'main:student_subjects' %}">
         <button class="btn-cancel">Назад</button>
     </a></p>
-    <div class="about__info">
-    </div>
 </div>
 {% endif %}
 {% endblock %}

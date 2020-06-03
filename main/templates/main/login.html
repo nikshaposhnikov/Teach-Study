@@ -14,7 +14,7 @@
         <p>Ви вже виконали вхід</p>
     </div>
     {% else %}
-    <div class="registration__form">
+    <div class="registration__form-short">
         <form method="post" class="registration__form-item">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}

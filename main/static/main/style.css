@@ -101,7 +101,7 @@ body {
 .sidebar_item {
     display: flex;
     width: 100%;
-    padding: 0.625rem 0.625rem 0.625rem 3.125rem;
+    padding: 0.625rem 0.625rem 0.625rem 2.125rem;
     font-size: 18px;
 }
 
@@ -193,7 +193,9 @@ body {
 .return-btn:hover,
 .btn-add-ads:hover,
 .btn-delete-ads:hover,
-.btn-edit-ads:hover {
+.btn-edit-ads:hover,
+.btn-forgot-password:hover,
+.btn-cancel:hover {
     background-color: #168bd6;
 }
 
@@ -323,6 +325,7 @@ body {
     margin-bottom: 2rem;
     padding: 6px 0;
     color: white;
+    margin-top: 2rem;
 }
 
 .about__container,
@@ -352,8 +355,15 @@ body {
     flex-direction: column;
     padding-top: 2rem;
     color: white;
+    width: 43.75rem;
 }
-
+.registration__form-short{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    color: white;
+    width: 31.25rem;
+}
 .btn-i-am-teacher,
 .form-group .btn.btn-primary,
 .btn-forgot-password {
@@ -434,6 +444,7 @@ body {
     color: white;
     font-size: 16px;
     padding-top: 1rem;
+    padding-left: 2rem;
 }
 
 .studying-files__container {
@@ -441,6 +452,7 @@ body {
     justify-content: center;
     align-items: center;
     padding-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .studying-files__item {
@@ -495,6 +507,12 @@ body {
 .btn-cancel.edit-teacher-info {
     position: absolute;
     bottom: 30px;
+    right: 30%;
+}
+
+.registration-return__button {
+    position: absolute;
+    bottom: 14px;
     right: 30%;
 }
 
@@ -715,6 +733,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 
 .detail-add .ads-item__info {
     padding-left: 5rem;
+    padding-right: 2rem;
 }
 
 .comments__box-container {
@@ -735,11 +754,39 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 .form-group.row textarea {
     margin-left: 1rem;
 }
-.alert-success{
+
+.alert-success {
     display: none;
 }
-.btn-edit-comment{
+
+.btn-edit-comment {
     position: absolute;
     right: 27%;
     bottom: 43px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none;
+}
+
+.carousel-control-next-icon:after {
+    content: '>';
+    font-size: 45px;
+    color: black;
+}
+
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 45px;
+    color: black;
+}
+
+.pagination__container {
+    display: flex;
+    width: 95%;
+    justify-content: flex-end;
+}
+.add-ads__container .form-group.row textarea{
+    margin-left: 0;
 }

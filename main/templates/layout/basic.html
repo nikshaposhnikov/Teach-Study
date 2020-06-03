@@ -76,16 +76,14 @@
             сайт</a></div>
 
         {% elif user.is_teacher %}
-        <!--        <nav class="col-md-auto nav flex-column border">-->
         {% for group in groups %}
         {% ifchanged group.super_group.pk %}
         <span class="nav-link root font-weight-bold">
                 {{ group.super_group.name }}</span>
         {% endifchanged %}
         <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:by_group' pk=group.pk %}">
-            {{ group.name|slice:16 }}</a></div>
+            {{ group.name|slice:20 }}</a></div>
         {% endfor %}
-        <!--        </nav>-->
         {% else %}
         <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні оголошення</a></div>
         <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:student_profile' %}">Оголошення

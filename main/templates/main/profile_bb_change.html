@@ -2,18 +2,22 @@
 
 {% load bootstrap4 %}
 {% block title %}
-    Редагування оголошення {{ bb.title }}
+Редагування оголошення {{ bb.title }}
 {% endblock %}
 
 {% block content %}
-    <h2>Редагування оголошення "{{ bb.title }}"</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form layout='horizontal' %}
-        {% bootstrap_formset formset layout='horizontal' %}
-        {% buttons submit='Редагувати' %}{% endbuttons %}
-    </form>
-    <p><a href="{% url 'main:profile' %}">
-        <button class="btn-cancel">Відміна</button>
-    </a></p>
+<div class="about__container">
+    <p class="about__name">Редагування оголошення "{{ bb.title }}"</p>
+    <div class="about__info">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form layout='horizontal' %}
+            {% bootstrap_formset formset layout='horizontal' %}
+            {% buttons submit='Редагувати' %}{% endbuttons %}
+        </form>
+        <p><a href="{% url 'main:profile' %}">
+            <button class="btn-cancel btn-edit-comment">Відміна</button>
+        </a></p>
+    </div>
+</div>
 {% endblock %}
