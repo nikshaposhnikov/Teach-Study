@@ -11,6 +11,7 @@ body {
     font-family: sans-serif;
     background-color: #243b7f;
     color: white;
+    min-width: 600px;
 }
 
 .header {
@@ -27,6 +28,7 @@ body {
     border-right: 1px solid white;
     width: 20%;
     max-width: 17.5rem;
+    min-width: 12.5rem;
 }
 
 .logo__img {
@@ -96,6 +98,7 @@ body {
     max-width: 17.5rem;
     padding-top: 2rem;
     border-right: 1px solid;
+    min-width: 12.5rem;
 }
 
 .sidebar_item {
@@ -283,6 +286,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding-top: 2rem;
+    text-align: center;
 }
 
 .schedule-list__header-name {
@@ -333,7 +337,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
+    padding: 2rem 1rem 1rem;
     position: relative;
 }
 
@@ -342,6 +346,7 @@ body {
     color: white;
     font-size: 30px;
     font-weight: bold;
+    text-align: center;
 }
 
 .about__info {
@@ -357,13 +362,15 @@ body {
     color: white;
     width: 43.75rem;
 }
-.registration__form-short{
+
+.registration__form-short {
     display: flex;
     flex-direction: column;
     padding-top: 2rem;
     color: white;
     width: 31.25rem;
 }
+
 .btn-i-am-teacher,
 .form-group .btn.btn-primary,
 .btn-forgot-password {
@@ -461,6 +468,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0 2rem;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 .studying-files__item-img {
@@ -684,6 +693,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     flex-direction: column;
     flex-grow: 1;
     padding: 1rem;
+    min-width: 400px;
 }
 
 .comment__item-name {
@@ -740,6 +750,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     display: flex;
     justify-content: space-around;
     padding-top: 3rem;
+    flex-wrap: wrap;
 }
 
 .comments__box-comments {
@@ -749,6 +760,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 
 .comments__box-comments .media-list {
     width: 95%;
+    padding-left: 2px;
 }
 
 .form-group.row textarea {
@@ -787,6 +799,165 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     width: 95%;
     justify-content: flex-end;
 }
-.add-ads__container .form-group.row textarea{
+
+.add-ads__container .form-group.row textarea {
     margin-left: 0;
+}
+
+.edit-materials .col-md-9 a {
+    color: #99ccff;
+}
+
+.hamburger__container {
+    display: none;
+    cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.hamburger__item-list {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: 10%;
+    left: 20%;
+    border: 1px solid gray;
+    color: black;
+    z-index: 9999;
+}
+
+.hamburger__item-list .sidebar_item-link {
+    color: black;
+}
+
+.hamburger__item-list .navbar-nav {
+    padding: 0.5rem;
+}
+
+
+@media (max-width: 1030px) {
+    .logo__name {
+        font-size: 15px;
+    }
+
+    #carouselExampleIndicators .d-block.w-100 {
+        height: 300px;
+    }
+
+    .detail-add .ads-item__info {
+        padding: 0 2rem;
+    }
+
+    #carouselExampleIndicators {
+        width: 400px;
+    }
+
+    .registration__form {
+        width: 34rem;
+    }
+
+    .registration__form-short {
+        width: 25rem;
+    }
+}
+
+@media (max-width: 865px) {
+
+    .logo {
+        width: 40%;
+    }
+
+    .hamburger__container {
+        display: inline-block;
+    }
+
+    .hamburger__item-list {
+        display: inline-block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .ads-item__img {
+        width: 200px;
+        height: 150px;
+    }
+
+    #carouselExampleIndicators .d-block.w-100 {
+        height: 250px;
+    }
+
+    .detail-add .ads-item__info {
+        padding: 0 1rem;
+    }
+
+    #carouselExampleIndicators {
+        width: 300px;
+    }
+
+    .ads-item__img-container {
+        min-width: 100px;
+        min-height: 100px;
+    }
+
+    .btn-edit-comment,
+    .btn-cancel.edit-teacher-info {
+        right: 10%;
+    }
+
+    .btn-cancel.edit-teacher-info {
+        bottom: 2.75rem;
+    }
+
+    .btn-edit-comment {
+        bottom: 3.6875rem;
+    }
+    .edit-password .btn-edit-comment{
+        bottom: 45px;
+    }
+}
+
+@media (max-width: 650px) {
+    .ads__item {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #carouselExampleIndicators {
+        width: 400px;
+    }
+
+    .item-details .ads-item__info {
+        padding: 0;
+    }
+
+    .item-details .ads-item__info .text-right {
+        text-align: center !important;
+    }
+
+    .ads-item__info {
+        display: flex;
+        align-items: center;
+    }
 }

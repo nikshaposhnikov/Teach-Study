@@ -88,7 +88,11 @@
             <p>На даний момент ви не опублікували жодного оголошення</p>
         </div>
     </div>
-    <p><a href="{% url 'main:profile_bb_add' %}">Додати оголошення</a></p>
+    <p><a href="{% url 'main:profile_bb_add' %}">
+        <button class="btn btn-primary">
+            Додати оголошення
+        </button>
+    </a></p>
     {% endif %}
     {% else %}
     <div class="ads__header-container">

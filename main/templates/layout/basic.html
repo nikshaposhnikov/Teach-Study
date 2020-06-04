@@ -10,7 +10,6 @@
     {% bootstrap_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     {% bootstrap_javascript jquery='slim' %}
-    <link rel="stylesheet" type="text/css" href="../../static/main/adverts.css">
 </head>
 <body>
 <header class="header">
@@ -19,9 +18,45 @@
         </a>
         <p class="logo__name"><a class="logo__link" href="{% url 'main:index' %}">Кафедра стратегічного управління <br>
             НТУ ХПИ</a></p>
-
+        <div class="hamburger__container navbar-toggler" data-toggle="collapse" data-target="#navbarNav"
+             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="myFunction(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
     </div>
     <nav class="navigation">
+        <div class="collapse navbar-collapse hamburger__item-list" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_anonymous %}
+                <li class="sidebar_item dropdown-item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні
+                    оголошення</a></li>
+                <li class="sidebar_item dropdown-item"><a class="sidebar_item-link"
+                                            href="{% url 'main:list_schedule' %}">Розклад</a></li>
+                <li class="sidebar_item dropdown-item"><a class="sidebar_item-link" href="{% url 'main:other' page='about' %}">Про
+                    сайт</a></li>
+
+                {% elif user.is_teacher %}
+                {% for group in groups %}
+                {% ifchanged group.super_group.pk %}
+                <span class="nav-link root font-weight-bold">
+                {{ group.super_group.name }}</span>
+                {% endifchanged %}
+                <li class="sidebar_item dropdown-item"><a class="sidebar_item-link" href="{% url 'main:by_group' pk=group.pk %}">
+                    {{ group.name|slice:20 }}</a></li>
+                {% endfor %}
+                {% else %}
+                <li class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні
+                    оголошення</a>
+                </li>
+                <li class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:student_profile' %}">Оголошення
+                    для моєї групи</a></li>
+                <li class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:other' page='about' %}">Про
+                    сайт</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
         {% if user.is_anonymous %}
         <div class="navigation__item"><a class="navigation__item-link" href="{% url 'main:register' %}">Реєстрація</a>
         </div>
@@ -85,7 +120,8 @@
             {{ group.name|slice:20 }}</a></div>
         {% endfor %}
         {% else %}
-        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні оголошення</a></div>
+        <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:index' %}">Загальні оголошення</a>
+        </div>
         <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:student_profile' %}">Оголошення
             для моєї групи</a></div>
         <div class="sidebar_item"><a class="sidebar_item-link" href="{% url 'main:other' page='about' %}">Про сайт</a>
@@ -99,5 +135,7 @@
         {% endblock %}
     </section>
 </main>
+
+<script src="{% static 'scripts/main.js' %}"></script>
 </body>
 </html>
