@@ -11,7 +11,8 @@ body {
     font-family: sans-serif;
     background-color: #243b7f;
     color: white;
-    min-width: 600px;
+    min-width: 325px;
+    overflow: auto;
 }
 
 .header {
@@ -293,6 +294,7 @@ body {
     color: white;
     font-size: 30px;
     font-weight: bold;
+    padding: 0 1rem;
 }
 
 .schedule-list__container {
@@ -347,6 +349,7 @@ body {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
+    word-break: break-word;
 }
 
 .about__info {
@@ -401,6 +404,7 @@ body {
 
 .registration__buttons {
     padding-top: 1rem;
+    margin: auto;
 }
 
 .return-btn {
@@ -430,7 +434,7 @@ body {
 }
 
 .registration__form-forgot-password {
-    align-self: flex-end;
+    margin: auto;
 }
 
 .registration__form-item {
@@ -439,7 +443,7 @@ body {
 }
 
 .registration__btn-container {
-    align-self: flex-end;
+    margin: auto;
 }
 
 .teacher-name {
@@ -487,6 +491,7 @@ body {
 
 .studying-files__item-link-container {
     padding: 10px 0;
+    text-align: center;
 }
 
 .white-bg {
@@ -631,6 +636,10 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 
 .table tbody tr td:first-child {
     font-weight: bold;
+}
+
+.calendar.table.table-bordered {
+    min-width: 700px;
 }
 
 .schedule-list__item-name {
@@ -854,6 +863,10 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     padding: 0.5rem;
 }
 
+.registration-new-user .btn.btn-primary {
+    margin: auto;
+    margin-top: 1rem;
+}
 
 @media (max-width: 1030px) {
     .logo__name {
@@ -933,7 +946,8 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     .btn-edit-comment {
         bottom: 3.6875rem;
     }
-    .edit-password .btn-edit-comment{
+
+    .edit-password .btn-edit-comment {
         bottom: 45px;
     }
 }
@@ -959,5 +973,162 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     .ads-item__info {
         display: flex;
         align-items: center;
+    }
+
+    .ads-page {
+        padding-left: 1rem;
+    }
+
+    .detail-add.white-bg {
+        padding-left: 0;
+    }
+
+    .comments__box-comments .media-list {
+        margin: auto;
+    }
+}
+
+@media (max-width: 525px) {
+    .logo {
+        width: 75%;
+    }
+
+    .navigation {
+        padding-right: 0;
+    }
+
+    .ads__header-container {
+        flex-wrap: wrap;
+    }
+
+    .ads-page, .ads-item__info {
+        padding-left: 0.5rem;
+    }
+
+    .pagination {
+        padding-right: 1rem;
+    }
+
+    #carouselExampleIndicators {
+        width: 300px;
+    }
+
+    .form-control {
+        width: 95%;
+    }
+
+    .comments__box {
+        flex-wrap: wrap;
+    }
+
+    .form-group.row textarea {
+        margin-left: 0;
+    }
+
+    .comments__box .form-group {
+        width: 95%;
+    }
+
+    .comment__item-container {
+        min-width: 200px;
+    }
+
+    .dropdown-menu.show {
+        left: -5rem !important;
+    }
+
+    .registration__form {
+        width: 18.75rem;
+    }
+
+    .btn-cancel.edit-teacher-info {
+        bottom: 0;
+    }
+
+    .navigation {
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 15px;
+        max-width: 40%;
+    }
+
+    .navigation__item {
+        padding: 0.5rem;
+    }
+
+    .navigation__item-link {
+        font-size: 16px;
+    }
+
+    .logo__link {
+        font-size: 13px;
+    }
+
+    .registration__form-short {
+        width: 16rem;
+    }
+
+    .registration-return__button,
+    .btn-cancel,
+    .btn-cancel.btn-edit-comment,
+    .btn-cancel.edit-teacher-info {
+        position: relative;
+        bottom: 0;
+        right: 0;
+    }
+
+    .form-group {
+        justify-content: center;
+    }
+
+    .btn-cancel_container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .about__container, .registration {
+        padding: 2rem 0.5rem 1rem;
+    }
+
+    .registration-return__button {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navigation .dropdown-toggle {
+        white-space: normal;
+    }
+
+    .navigation .nav-link {
+        padding: .5rem .25rem;
+        word-break: break-word;
+        font-size: 14px;
+    }
+
+    .add-ads__container .registration__form .col-md-3.col-form-label,
+    .edit-materials .registration__form .col-md-3.col-form-label {
+        display: none;
+    }
+
+    .add-ads__container .registration__form .form-check,
+    .edit-materials .registration__form .form-check {
+        margin-top: -1.75rem;
+    }
+
+    .add-ads__container .registration__form .col-md-9,
+    .edit-materials .registration__form .col-md-9 {
+        padding-top: 1.5rem;
+    }
+
+    .about__info {
+        padding-top: 0.5rem;
+    }
+
+    .registration__form {
+        padding-top: 1rem;
+    }
+
+    .about__name {
+        font-size: 27px;
     }
 }

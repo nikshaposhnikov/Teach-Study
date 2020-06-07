@@ -14,7 +14,7 @@
             {% bootstrap_form form layout='horizontal' %}
             {% buttons submit='Редагувати' %}{% endbuttons %}
         </form>
-        <p><a href="{% url 'main:detail' group_pk=comment.bb.group.pk pk=comment.bb.pk %}">
+        <p class="btn-cancel_container"><a href="{% url 'main:detail' group_pk=comment.bb.group.pk pk=comment.bb.pk %}">
             <button class="btn-cancel btn-edit-comment">Відміна</button>
         </a></p>
     </div>
