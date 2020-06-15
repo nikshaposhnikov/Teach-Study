@@ -107,6 +107,7 @@ body {
     width: 100%;
     padding: 0.625rem 0.625rem 0.625rem 2.125rem;
     font-size: 18px;
+    text-decoration: underline;
 }
 
 .sidebar_item-link {
@@ -640,6 +641,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 
 .calendar.table.table-bordered {
     min-width: 700px;
+    zoom: 0.8;
 }
 
 .schedule-list__item-name {
@@ -820,6 +822,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 .hamburger__container {
     display: none;
     cursor: pointer;
+    padding-left: 0;
 }
 
 .bar1, .bar2, .bar3 {
@@ -848,8 +851,8 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     display: none;
     position: absolute;
     background-color: white;
-    top: 10%;
-    left: 20%;
+    top: 13%;
+    left: 2%;
     border: 1px solid gray;
     color: black;
     z-index: 9999;
@@ -866,6 +869,36 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
 .registration-new-user .btn.btn-primary {
     margin: auto;
     margin-top: 1rem;
+}
+
+.btn-add-new-teacher {
+    margin-bottom: 15px;
+}
+
+.dropdown-menu.show {
+    z-index: 10000;
+}
+
+.lock-icon {
+    color: wheat;
+}
+
+.registration .forget-password {
+    display: flex;
+    align-items: center;
+}
+
+.forget-password .btn-cancel,
+.forget-password .btn.btn-primary {
+    width: 10rem;
+}
+
+.forget-password .registration__buttons {
+    padding-top: 0;
+}
+
+.forget-password__form label {
+    display: none;
 }
 
 @media (max-width: 1030px) {
@@ -950,6 +983,14 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     .edit-password .btn-edit-comment {
         bottom: 45px;
     }
+
+    .navigation #navbarNav .nav-link {
+        border-top: 1px solid gainsboro;
+    }
+
+    .navigation #navbarNav .nav-link:first-child {
+        border-top: none;
+    }
 }
 
 @media (max-width: 650px) {
@@ -988,9 +1029,9 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     }
 }
 
-@media (max-width: 525px) {
+@media (max-width: 580px) {
     .logo {
-        width: 75%;
+        width: 67%;
     }
 
     .navigation {
@@ -1061,7 +1102,7 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     }
 
     .logo__link {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .registration__form-short {
@@ -1087,12 +1128,15 @@ table.table-borderless > thead > tr > th, table.table-borderless > tbody > tr > 
     }
 
     .about__container, .registration {
-        padding: 2rem 0.5rem 1rem;
+        padding: 2rem 0.5rem 3rem;
     }
 
     .registration-return__button {
         display: flex;
         justify-content: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
     }
 
     .navigation .dropdown-toggle {

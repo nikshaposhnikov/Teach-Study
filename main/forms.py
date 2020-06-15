@@ -52,6 +52,7 @@ class SubGroupForm(forms.ModelForm):
 
 
 class EmailValidationOnForgotPassword(PasswordResetForm):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     def clean_email(self):
         email = self.cleaned_data['email']
         if not AdvUser.objects.filter(email__iexact=email, is_active=True).exists():
